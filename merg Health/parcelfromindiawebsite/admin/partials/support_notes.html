@@ -1,0 +1,79 @@
+<div>
+    <div class="navbar-fixed-top" ng-include="getTopMenu()"></div>
+</div>
+<div style="margin-top: 50px;">
+        <div class="page-container">
+            <header ng-include="'partials/left_menu.html'"></header>
+            <div class="main-content">
+                <!-- <header ng-include="'partials/user_menu.html'"></header> -->
+                <hr />
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2 class="table_heading">Support Notes List</h2>
+                    </div>
+                    <div class="form-group col-md-6" style="margin-top: 12px;">
+                        <div class="icon-addon addon-sm">
+                            <input type="text" placeholder="Search Support Notes" class="form-control" ng-model="searchtxt"type="text">
+                        </div>
+                    </div>
+                </div>  
+                <hr />
+                <div class="row">
+                    <div class="col-sm-12" ng-init="allSupportNotes()">
+                        <div class="panel panel-default table-hover table-responsive">
+                            <div class="panel-heading"> </div>
+                            <table class="table table-bordered table-striped datatable" id="table-2">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Req Id</th>
+                                        <th>Message</th>
+                                        <th>Req User</th>
+                                        <th>Assign to</th>
+                                        <th>Action</th>
+                                    </tr>
+                                <tbody>
+                                    </thead>
+                                    <tr ng-repeat="help in supportNotes |  orderBy: 'req_id':true | filter: searchtxt">
+                                        <td>#{{help.req_id}}</td>
+                                        <td>{{help.sup_notes}}</td>
+                                        <td>{{help.s_client }}</td>
+                                        <td>{{help.s_staff}}</td>
+                                        <td>
+                                            <a class="btn btn-info btn-sm btn-icon icon-left" data-toggle="modal"
+                                                data-target="#del_po" ng-click='SuppDel(help.req_id)'>
+                                                <i class="entypo-cancel"></i> Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="text-align: center;font-size:25px;font-weight:600"><i ng-hide="supportNotes" class="fa fa-spinner" aria-hidden="true">
+                            Page loading...</i></div>
+                    </div>
+                </div>
+                <!-- Footer -->
+            </div>
+        </div>
+    
+        <div class="modal fade" id="del_po" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="margin: 225px auto;">
+                <div class="modal-content delete">
+                    <div class="modal-header" style="border:none;">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <img src="img/delete.svg">
+                        <h2>Confirm Delete ?</h2>
+                        <br>
+                        <div>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"
+                                style="padding:7px 20px;">Cancel</button>
+                            <button type="button" class="btn btn-primary" ng-click="confSuppDel(help.id)"
+                                data-dismiss="modal" style="margin-left: 5px;">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

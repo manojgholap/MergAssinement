@@ -1,0 +1,185 @@
+<div>
+    <div class="page-container">
+        <header ng-include="'partials/left_menu.html'"></header>
+        <div class="main-content">
+            <header ng-include="'partials/user_menu.html'"></header>
+            <hr />
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-10">
+                        <h2 class="table_heading">Invoice</h2>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="add_btn_container">
+                            <button type="button" class="btn btn-primary" ng-click="goto('/wtb-list')"
+                            style="margin-right: 20px; margin-top: 15px; float:right;">Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <div id="exportthis" class="row" ng-init="invoiceclientById()">
+                <section>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="../img/GADGET.png" alt="logo" class="limg">
+                            </div>
+                            <div id="pOrder" class="col-md-6">
+                                <h2>INVOICE</h2>
+                                <h4>Fountain Technologies Pte. Ltd.</h4>
+                                <p>
+                                    06-48A Sim Lim Square<br>
+                                    1 Rocher Canal Road <br>
+                                    Singapore,188504<br>
+                                    Phone: +6592408380<br>
+                                    Mobile: +6592408380<br>
+                                    www.gadgetsinasia.com
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-12" id="hr">
+                            <div class="row">
+                                <div class="col-md-4" id="lH">
+                                    <h2>BILL To</h2>
+                                    <h3>{{clientDetails.client_name}}</h3>
+                                    <span>{{clientDetails.company_name}}</span>
+                                    <p>{{clientDetails.address}}<br>
+                                        <span>{{clientDetails.contact}}</span><br>
+                                        <span>{{clientDetails.email}}</span><br>
+                                    </p>
+                                </div>
+                                <div class="col-md-4" id="lH">
+                                    <h2>SHIP To</h2>
+                                    <h3>{{clientDetails.client_name}}</h3>
+                                    <span>{{clientDetails.company_name}}</span>
+                                    <p>{{clientDetails.address}}<br>
+                                        <span>{{clientDetails.contact}}</span><br>
+                                        <span>{{clientDetails.email}}</span><br>
+                                    </p>
+                                </div>
+                                <div class="col-md-4" id="payment" ng-init="InvoiceDetails()">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <span class="p_head">Invoice Date</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span>{{Invoicedata[0].date}}</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span class="p_head">Payment Due:</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span>{{Invoicedata[0].date}}</span>
+                                        </div>
+                                        <div class="col-md-6" id="acolor">
+                                            <span class="p_head">Amount Due(USD):</span>
+                                        </div>
+                                        <div class="col-md-6" id="acolor">
+                                            <span>{{getWTBTotal()}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12" id="pHr" ng-init="AllInvoiceData()">
+                            <div class="row"  ng-init="InvoiceDetails()">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-default table-hover table-responsive">
+                                        <table class="table table-bordered table-striped datatable" id="table-2">
+                                            <thead id="tc" class="thead-light">
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Items</th>
+                                                    <th>Color</th>
+                                                    <th>Quantity</th>
+                                                    <th>Price</th>
+                                                    <th>Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat='data in Invoicedata track by $index'>
+                                                    <td>{{$index+1}}</td>
+                                                    <td>{{data.product_title}}</td>
+                                                    <td>{{data.colour}}</td>
+                                                    <td>{{data.qty}}</td>
+                                                    <td>{{data.price}}</td>
+                                                    <td>{{data.total_price}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12" >
+                            <div class="col-md-10 tRight">
+                                <span>Total</span>
+                            </div>
+                            <div class="col-md-2 fs">
+                                <span>{{getWTBTotal()}}</span>
+                            </div>
+                            <div class="col-md-10 tRight">
+                                <span>Payment on march 20,2019 using a bank payment:</span>
+                            </div>
+                            <div class="col-md-2 fs">
+                                <span>---</span>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-8 sp">
+                                    <!-- <h4>Special Instruction:</h4>
+                                    <span>Payment: 20% Advance 80% Againts Inspection</span> -->
+                                </div>
+                                <div class="col-md-2 ta">
+                                    <span>Amount Due(USD):</span>
+                                </div>
+                                <div class="col-md-2 ta2">
+                                    <span>{{getWTBTotal()}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-6 spn">
+                                    Special Notes<br>
+                                    For Payment to :<br>
+                                    Fountain Technologies Pte. Ltd.<br>
+                                    Account Number: 003-93-48533<br>
+                                    DBS Bank Singapore<br>
+                                    <!-- SWIFT Details<br>
+                                    DBS Bank LTD<br>
+                                    12 Marina Boulevard<br>
+                                    DBS Asia Central<br>
+                                    Marina Bay Financial Centre Tower 3 Singapore 018982<br> -->
+                                    Swift Address: DBSSSGSG<br>
+                            </div>
+                            <!-- <div class="col-md-6 mts">
+                                <div class="col-md-6">
+                                    Approving party signature<br>
+                                    Date: 17/05/2019
+                                </div>
+                                <div class="col-md-6">
+                                    Purchasing party signature<br>
+                                    Date: 17/05/2019
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </section>
+                <div class="col-md-12 bp">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-primary" ng-click="invoiceExport()">Print</button>
+                        <button type="button" class="btn btn-primary" ng-click="saveInvoice(clientDetails,Invoicedata,getWTBTotal())">Save Order</button>
+                        <p ng-show="showaddpromsg" class="success_msg" style="text-align: center;">
+                            {{success_msg}}</p>
+                        <p ng-show="showaddproductsemsg" class="error_msg"
+                            style="text-align: center;">{{error_msg}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <!-- <div style="text-align: center;font-size:25px;font-weight:600"><i ng-hide="wtbLists" class="fa fa-spinner" aria-hidden="true">
+                    Page loading...</i></div> -->
+            <!-- Footer -->
+        </div>
+    </div>

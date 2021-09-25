@@ -1,0 +1,139 @@
+<div>
+    <div class="page-container">
+        <header ng-include="'partials/left_menu.html'"></header>
+        <div class="main-content">
+            <header ng-include="'partials/product_menu.html'"></header>
+            <hr />
+            <div class="row"> </div>
+            <h2 class="table_heading">Product Details</h2>
+            <div class="row">
+                <div class="col-sm-9" ng-init="productByproductId()">
+                    <div class="row">
+                        <div class="col-sm-6" ng-repeat="product in productData">
+                            <div class="panel panel-default">
+                                <div class="panel-heading"> </div>
+                                <form role="form" class="form-horizontal form-groups-bordered">
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Product Title</label>
+                                        <div class="col-sm-5">
+                                            <p for="field-1" class="control-label" style="text-align:left;padding-left:10px;">{{product.description}}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Product Brand</label>
+                                        <div class="col-sm-5">
+                                            <p for="field-1" class="control-label" style="text-align:left;padding-left:10px;">{{product.brand}}</p>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label"> Product Type</label>
+                                        <div class="col-sm-5">
+                                            <p for="field-1" class="control-label" style="text-align:left;padding-left:10px;">{{product.product_type}}</p>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label"> Seling Price</label>
+                                        <div class="col-sm-5">
+                                            <p for="field-1" class="control-label" style="text-align:left;padding-left:10px;">{{product.selling_price}}</p>
+                                        </div>
+
+                                    </div>
+                                     <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label"> Cost Price</label>
+                                        <div class="col-sm-5">
+                                            <p for="field-1" class="control-label" style="text-align:left;padding-left:10px;">{{product.cost_price}}</p>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label"> Markup</label>
+                                        <div class="col-sm-5">
+                                            <p for="field-1" class="control-label" style="text-align:left;padding-left:10px;">{{product.markup}}</p>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label"> Warehouse</label>
+                                        <div class="col-sm-5">
+                                            <p for="field-1" class="control-label" style="text-align:left;padding-left:10px;">{{product.warehouse}}</p>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label"> EAN Number</label>
+                                        <div class="col-sm-5">
+                                            <p for="field-1" class="control-label" style="text-align:left;padding-left:10px;">{{product.ean_number}}</p>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label"> Product Index Price 1</label>
+                                        <div class="col-sm-5">
+                                            <p for="field-1" class="control-label" style="text-align:left;padding-left:10px;">{{product.product_index_price_1}}</p>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label"> Product Index Price 2</label>
+                                        <div class="col-sm-5">
+                                            <p for="field-1" class="control-label" style="text-align:left;padding-left:10px;">{{product.product_index_price_2}}</p>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label"> Product Index Price 3</label>
+                                        <div class="col-sm-5">
+                                            <p for="field-1" class="control-label" style="text-align:left;padding-left:10px;">{{product.product_index_price_3}}</p>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label"> Product Index Price 4</label>
+                                        <div class="col-sm-5">
+                                            <p for="field-1" class="control-label" style="text-align:left;padding-left:10px;">{{product.product_index_price_4}}</p>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label"> MOQ</label>
+                                        <div class="col-sm-5">
+                                            <p for="field-1" class="control-label" style="text-align:left;padding-left:10px;">{{product.moq}}</p>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label"> Seller Id</label>
+                                        <div class="col-sm-5">
+                                            <p for="field-1" class="control-label" style="text-align:left;padding-left:10px;">{{product.seller_id}}</p>
+                                        </div>
+
+                                    </div>
+
+
+
+                                  
+
+
+
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-3 col-sm-5">
+                                            <button ng-click="goto('products')" type="button" class="btn btn_back">Back</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer -->
+        </div>
+
+    </div>
+
+</div>

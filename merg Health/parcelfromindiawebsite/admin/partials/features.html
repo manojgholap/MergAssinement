@@ -1,0 +1,177 @@
+<div>
+    <div class="page-container">
+        <header ng-include="getLeftMenu()"></header>
+        <div class="main-content">
+            <header ng-include="'partials/user_menu.html'"></header>
+            <hr />
+            <div class="row">
+                <div class="col-md-3">
+                    <h2 class="table_heading">Features List</h2>
+                </div>
+                <div class="col-md-3" style=" margin-right: 10px;">
+                    <div class="add_btn_container">
+                        <button type="button" class="btn btn-primary " style="margin-top:15px;" ng-click="goto('/add-features')">Add Features</button>
+                    </div>
+                </div>
+            </div>
+            <hr />
+
+            <div class="row">
+                <div class="col-sm-12" ng-init="getFeatures()">
+                        <div class=" md">
+                            <div class="panel panel-default table-hover table-responsive">
+                                <div class="panel-heading"> </div>
+                                <table class="table table-bordered table-striped datatable" id="table-2">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Title</th>
+                                            <th>Description</th>
+                                            <th>Project Name</th>
+                                            <th>Email</th>
+                                            <th>Phone No.</th>
+                                            <th>Priority</th>
+                                            <th>Assign to</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    <tbody>
+                                        </thead>
+                                        <tr ng-repeat="feature in features |  orderBy: 'id':true | filter: searchtxt">
+                                            <td>#{{feature.id}}</td>
+                                            <td>{{feature.title}}</td>
+                                            <td>{{feature.description}}</td>
+                                            <td>{{feature.p_name}}</td>
+                                            <td>{{feature.email}}</td>
+                                            <td>{{feature.phone}}</td>
+                                            <td>{{feature.priority}}</td>
+                                            <td>{{feature.assign_to}}</td>
+                                            <td>{{feature.status}}</td>
+                                            <td>
+                                                <a class="btn btn-danger btn-sm btn-icon icon-left" data-toggle="modal"
+                                                    data-target="#del_po" ng-click='SuppDel(help.id)'>
+                                                    <i class="entypo-cancel"></i> Delete
+                                                </a>
+                                                <a type="button" class="btn btn-success" data-toggle="modal" style="margin: 5px 0px;border:none;padding: 5px 10px;" 
+                                                    data-target="#addNotes" ng-click='addSuppModel(help.id,help.assign_to,help.req_user,help.booking_no)'>
+                                                    Add Notes
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style="text-align: center;font-size:25px;font-weight:600"><i ng-hide="features" class="fa fa-spinner" aria-hidden="true">
+                                Page loading...</i></div>
+                        </div>
+                        
+                </div>
+            </div>
+            <!-- Footer -->
+        </div>
+    </div>
+
+    <div class="modal fade" id="del_po" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="margin: 225px auto;">
+            <div class="modal-content delete">
+                <div class="modal-header" style="border:none;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="img/delete.svg">
+                    <h2>Confirm Delete ?</h2>
+                    <br>
+                    <div>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"
+                            style="padding:7px 20px;">Cancel</button>
+                        <button type="button" class="btn btn-primary" ng-click="confSuppDel(help.id)"
+                            data-dismiss="modal" style="margin-left: 5px;">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- add notes -->
+<div class="modal fade" id="addNotes" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="margin: 225px auto;">
+            <div class="modal-content">
+                <!-- <div class="modal-header" style="border:none;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div> -->
+                <div class="modal-body text-center" style="height:330px;">
+                    <form name="supportform" data-ng-submit="addSupportNotes(mydesk)" name="supportform" id="supportform"
+                        novalidate>
+                        <div class="form-group">
+                            <h3 for="field-1" class="col-sm-12">Add Support Notes</h>
+                            <div class="col-sm-12" style="padding-bottom: 10px;">
+                                <textarea type="text" class="form-control" name="sup_notes" id="sup_notes" rows="10"
+                                    placeholder="Write Support Notes" ng-model='mydesk.sup_notes'></textarea>
+                                <div ng-messages="supportform.$submitted && supportform.sup_notes.$error"
+                                    class="error_msg">
+                                    <div ng-message="required">Enter Notes</div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-5">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal"
+                                    style="padding:7px 20px;">Cancel</button>
+                                <p ng-show="showaddpromsg" class="success_msg" style="text-align: center;">{{addpromsg}}
+                                </p>
+                                <p ng-show="showaddproductsemsg" class="error_msg" style="text-align: center;">
+                                    {{addproductsemsg}}</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="modal fade" id="uploadDocuments" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="margin: 225px auto;">
+            <div class="modal-content">
+                <div class="modal-body text-center " style="height:270px;">
+                    <div class="border">
+                    <form name="uploadDocumentsForm" 
+                    enctype="multipart/form-data" method="POST" 
+                    ng-submit="uploadDocuments(uploadDocumentsForm,document)" 
+                    name="uploadDocumentsForm" id="uploadDocumentsForm" novalidate>
+                        <div class="form-group">
+                            <h3 for="field-1" class="col-sm-12">Upload Documents</h3>
+                        </div>
+                        <hr>
+                        <div class="" style="text-align: left; padding-left: 10px;">
+                            
+                            <div style="padding-left: 140px;" class="">
+                                <label >Enter Document Name</label><br>
+                                <input type="text" 
+                                    name="document-name" 
+                                    ng-model="document.name" 
+                                    id="document-name"
+                                ><br>
+                            </div>
+                            <div style="padding-left: 140px;" class="">
+                                <br>
+                                <label >Choose File :</label> 
+                                    <input type="file" 
+                                    onchange="angular.element(this).scope().updateattachment2()" 
+                                    id="document-file"
+                                    ngf-select placeholder="Choose Image" 
+                                    ng-model="document.file" ><br>
+                            </div>
+                            <div style="padding-left: 140px;">
+                                <button type="submit" class="btn btn-primary" >Upload</button>
+                                <button class="btn btn-light" ng-click="reload()">Cancel</button>
+                            </div><br>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->

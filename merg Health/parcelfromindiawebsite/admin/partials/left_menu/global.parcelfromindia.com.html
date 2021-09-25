@@ -1,0 +1,309 @@
+    <div 
+        id="sidenav-trigger"  class="sidebar-collapse"
+        style="margin-top: 70px;
+        position: fixed;
+        top: 40px;
+        left: 50px;
+        border: 1px solid #eee;
+        border-radius: 2px;
+        font-size: 20px;">
+        
+        <a href="" class="sidebar-collapse-icon with-animation" ng-click="showhide('sidebar')">
+            <i class="entypo-menu"></i> 
+        </a>
+    </div>
+
+    <div id="sidebar" class="sidebar-menu" style="width: 220px;">
+        <header class="logo-env">
+            <div class="sidebar-collapse">
+                <a href="" class="sidebar-collapse-icon with-animation" ng-click="showhide('sidebar')">
+                    <i class="entypo-menu"></i> </a>
+            </div>
+            <div class="sidebar-mobile-menu visible-xs">
+                <a href="" class="with-animation" ng-click="showhide('main-menu')">
+                    <i class="entypo-menu"></i> </a>
+            </div>
+        </header>
+        <ul id="main-menu" class="">
+            <li class="opened active"> <a href="" ng-click="showhide('sub_menu')"><i class="entypo-menu"></i><span>Admin
+                        Action</span></a>
+                <!-- <ul id="sub_menu" style="cursor: pointer;">
+                    <li class="oplist">
+                        <a ng-click="goto('add-driver')">
+                            <i class="fa fa-dribbble" aria-hidden="true"></i><span>Create Driver</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('list-driver')">
+                            <i class="fa fa-car" aria-hidden="true"></i><span>Driver List</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('list-pickup')">
+                            <i class="fa fa-car" aria-hidden="true"></i><span>Pickup List</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('list-delivery')">
+                            <i class="fa fa-car" aria-hidden="true"></i><span>Delivery List</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('compose-email')">
+                            <i class="fa fa-envelope-o" aria-hidden="true"></i><span>Send Email</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('activity-list')">
+                            <i class="fa fa-sliders" aria-hidden="true"></i><span>Activity List</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('Support')">
+                            <i class="fa fa-ticket" aria-hidden="true"></i><span>Supports</span>
+                        </a>
+                    </li>                    
+                    <li class="oplist">
+                        <a ng-click="goto('features-list')">
+                            <i class="fa fa-ticket" aria-hidden="true"></i><span>Features List</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('parcels')">
+                            <i class="fa fa-book" aria-hidden="true"></i><span>All Parcels</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('parcelsOfIndia')">
+                            <i class="fa fa-book" aria-hidden="true"></i><span>IN Parcels</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('parcelsOfSingapore')">
+                            <i class="fa fa-book" aria-hidden="true"></i><span>SG Parcels</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('orders')">
+                            <i class="fa fa-book" aria-hidden="true"></i><span>Orders</span>
+                        </a>
+                    </li> -->
+                    
+                    <!-- <li class="oplist">
+                        <a ng-click="goto('pickupParcel')">
+                            <i class="fa fa-book" aria-hidden="true"></i><span>Pickup Parcels</span>
+                        </a>
+                    </li>
+                
+                    <li class="oplist">
+                        <a ng-click="goto('collections')">
+                            <i class="fa fa-cart-arrow-down" aria-hidden="true"></i><span>Collection Points</span>
+                        </a>
+                    </li>
+
+                    <li class="oplist">
+                        <a ng-click="goto('Support-Notes')">
+                            <i class="fa fa-sticky-note-o" aria-hidden="true"></i><span>Supports Notes</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('parcels-Notes')">
+                            <i class="fa fa-sticky-note-o" aria-hidden="true"></i><span>Parcels Notes</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('categorylist')">
+                            <i class="fa fa-font-awesome" aria-hidden="true"></i><span>Category</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('brands')">
+                            <i class="fa fa-font-awesome" aria-hidden="true"></i><span>Brands</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('products')">
+                            <i class="fa fa-product-hunt" aria-hidden="true"></i><span>Products</span>
+                        </a>
+                    </li>
+
+                    <li class="oplist">
+                        <a ng-click="goto('sub-products')">
+                            <i class="fa fa-product-hunt" aria-hidden="true"></i><span>Sub Products</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('WS-WTS')">
+                            <i class="fa fa-cart-arrow-down" aria-hidden="true"></i><span>WS WTS</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('wtb-list')">
+                            <i class="fa fa-cart-arrow-down" aria-hidden="true"></i><span>WTB</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('wts-list')">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i><span>WTS</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                    <a ng-click="goto('Invoices-List')">
+                        <i class="fa fa-credit-card-alt" aria-hidden="true"></i><span>Invoice Orders</span>
+                    </a>
+                </li> 
+                    <li class="oplist">
+                        <a ng-click="goto('userOrder')">
+                            <i class="fa fa-credit-card-alt" aria-hidden="true"></i><span>Packing Orders</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('directBuyOrders')">
+                            <i class="fa fa-credit-card-alt" aria-hidden="true"></i><span>Direct Buy Orders</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('resellers')">
+                            <i class="fa fa-users" aria-hidden="true"></i><span>Resellers</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('purchaseOrder')">
+                            <i class="fa fa-credit-card-alt" aria-hidden="true"></i><span>Purchase Orders</span>
+                        </a>
+                    </li>
+
+                    <li class="oplist">
+                        <a ng-click="goto('Incoming-Shipping')">
+                            <i class="fa fa-truck" aria-hidden="true"></i><span>Incoming Shipping</span>
+                        </a>
+                    </li>
+
+                    <li class="oplist">
+                        <a ng-click="goto('inquiry')">
+                            <i class="fa fa-commenting" aria-hidden="true"></i><span>Product Inquiry</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('notes')">
+                            <i class="fa fa-sticky-note-o" aria-hidden="true"></i><span>Notes</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('staff-list')">
+                            <i class="fa fa-address-card-o" aria-hidden="true"></i><span>Staff</span>
+                        </a>
+                    </li> -->
+                <!-- </ul> -->
+
+                <ul id="sub_menu" style="cursor: pointer;">
+                    <span style="margin-left: 30px;">Staff Wise Parcels</span>                    
+                    <li class="oplist">
+                        <a ng-click="goto('staffamol')">
+                            <i class="fa fa-address-card-o" aria-hidden="true"></i><span>Amol</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('staffpavan')">
+                            <i class="fa fa-address-card-o" aria-hidden="true"></i><span>Pawan</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('staffsneha')">
+                            <i class="fa fa-address-card-o" aria-hidden="true"></i><span>Sneha</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('staffmanisha')">
+                            <i class="fa fa-address-card-o" aria-hidden="true"></i><span>Manisha</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('staffshradha')">
+                            <i class="fa fa-address-card-o" aria-hidden="true"></i><span>Shradha</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('staffbarsha')">
+                            <i class="fa fa-address-card-o" aria-hidden="true"></i><span>Barsha</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('staffajay')">
+                            <i class="fa fa-address-card-o" aria-hidden="true"></i><span>Ajay</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('staffsm')">
+                            <i class="fa fa-address-card-o" aria-hidden="true"></i><span>Shankar Mumbai</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('staffkd')">
+                            <i class="fa fa-address-card-o" aria-hidden="true"></i><span>Kirti Delhi</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('staffselva')">
+                            <i class="fa fa-address-card-o" aria-hidden="true"></i><span>Selva</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('staffgagan')">
+                            <i class="fa fa-address-card-o" aria-hidden="true"></i><span>Gagan</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('staffkundan')">
+                            <i class="fa fa-address-card-o" aria-hidden="true"></i><span>Kundan</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('staffgauravm')">
+                            <i class="fa fa-address-card-o" aria-hidden="true"></i><span>Gaurav Medicines</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('staffpc')">
+                            <i class="fa fa-address-card-o" aria-hidden="true"></i><span>Professional Courier</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('staffdtdc')">
+                            <i class="fa fa-address-card-o" aria-hidden="true"></i><span>DTDC</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('stafftrackon')">
+                            <i class="fa fa-address-card-o" aria-hidden="true"></i><span>Trackon</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('staffdhl')">
+                            <i class="fa fa-address-card-o" aria-hidden="true"></i><span>DHL</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('staffdpex')">
+                            <i class="fa fa-address-card-o" aria-hidden="true"></i><span>DPEX</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('staffaircargo')">
+                            <i class="fa fa-address-card-o" aria-hidden="true"></i><span>Air Cargo</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('staffshipcargo')">
+                            <i class="fa fa-address-card-o" aria-hidden="true"></i><span>Ship Cargo</span>
+                        </a>
+                    </li>
+                </ul>
+
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+<!-- responsive collapse -->

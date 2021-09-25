@@ -1,0 +1,266 @@
+
+    <div 
+    id="sidenav-trigger" 
+    style="position: fixed;
+    top: 40px;
+    left: 50px;
+    border: 1px solid #eee;
+    border-radius: 2px;
+    font-size: 20px;" class="sidebar-collapse">
+        <a href="" class="sidebar-collapse-icon with-animation" ng-click="showhide('sidebar')">
+            <i class="entypo-menu"></i> </a>
+    </div>
+
+    <div id="sidebar" class="sidebar-menu" style="width: 220px;">
+        <header class="logo-env">
+            <div class="sidebar-collapse">
+                <a href="" class="sidebar-collapse-icon with-animation" ng-click="showhide('sidebar')">
+                    <i class="entypo-menu"></i> </a>
+            </div>
+            <div class="sidebar-mobile-menu visible-xs">
+                <a href="" class="with-animation" ng-click="showhide('main-menu')">
+                    <i class="entypo-menu"></i> </a>
+            </div>
+        </header>
+        <ul id="main-menu" class="">
+            <li class="opened active"> <a href="" ng-click="showhide('sub_menu')"><i class="entypo-menu"></i><span>Admin
+                        Action</span></a>
+                <ul id="sub_menu" style="cursor: pointer;">
+                    <li class="oplist">
+                        <a ng-click="goto('compose-email')">
+                            <i class="fa fa-envelope-o" aria-hidden="true"></i><span>Send Email</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('activity-list')">
+                            <i class="fa fa-sliders" aria-hidden="true"></i><span>Activity List</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('Support')">
+                            <i class="fa fa-ticket" aria-hidden="true"></i><span>Supports</span>
+                        </a>
+                    </li>                    
+                    <li class="oplist">
+                        <a ng-click="goto('features-list')">
+                            <i class="fa fa-ticket" aria-hidden="true"></i><span>Features List</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('parcels')">
+                            <i class="fa fa-book" aria-hidden="true"></i><span>All Parcels</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('parcelsOfIndia')">
+                            <i class="fa fa-book" aria-hidden="true"></i><span>IN Parcels</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('parcelsOfSingapore')">
+                            <i class="fa fa-book" aria-hidden="true"></i><span>SG Parcels</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('orders')">
+                            <i class="fa fa-book" aria-hidden="true"></i><span>Orders</span>
+                        </a>
+                    </li>
+                    
+                    <li class="oplist">
+                        <a ng-click="goto('pickupParcel')">
+                            <i class="fa fa-book" aria-hidden="true"></i><span>Pickup Parcels</span>
+                        </a>
+                    </li>
+                
+                    <li class="oplist">
+                        <a ng-click="goto('collections')">
+                            <i class="fa fa-cart-arrow-down" aria-hidden="true"></i><span>Collection Points</span>
+                        </a>
+                    </li>
+
+                    <li class="oplist">
+                        <a ng-click="goto('Support-Notes')">
+                            <i class="fa fa-sticky-note-o" aria-hidden="true"></i><span>Supports Notes</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('parcels-Notes')">
+                            <i class="fa fa-sticky-note-o" aria-hidden="true"></i><span>Parcels Notes</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('categorylist')">
+                            <i class="fa fa-font-awesome" aria-hidden="true"></i><span>Category</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('brands')">
+                            <i class="fa fa-font-awesome" aria-hidden="true"></i><span>Brands</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('products')">
+                            <i class="fa fa-product-hunt" aria-hidden="true"></i><span>Products</span>
+                        </a>
+                    </li>
+
+                    <li class="oplist">
+                        <a ng-click="goto('sub-products')">
+                            <i class="fa fa-product-hunt" aria-hidden="true"></i><span>Sub Products</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('WS-WTS')">
+                            <i class="fa fa-cart-arrow-down" aria-hidden="true"></i><span>WS WTS</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('wtb-list')">
+                            <i class="fa fa-cart-arrow-down" aria-hidden="true"></i><span>WTB</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('wts-list')">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i><span>WTS</span>
+                        </a>
+                    </li>
+                    <!-- <li class="oplist">
+                    <a ng-click="goto('Invoices-List')">
+                        <i class="fa fa-credit-card-alt" aria-hidden="true"></i><span>Invoice Orders</span>
+                    </a>
+                </li> -->
+                    <li class="oplist">
+                        <a ng-click="goto('userOrder')">
+                            <i class="fa fa-credit-card-alt" aria-hidden="true"></i><span>Packing Orders</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('directBuyOrders')">
+                            <i class="fa fa-credit-card-alt" aria-hidden="true"></i><span>Direct Buy Orders</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('resellers')">
+                            <i class="fa fa-users" aria-hidden="true"></i><span>Resellers</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('purchaseOrder')">
+                            <i class="fa fa-credit-card-alt" aria-hidden="true"></i><span>Purchase Orders</span>
+                        </a>
+                    </li>
+
+                    <li class="oplist">
+                        <a ng-click="goto('Incoming-Shipping')">
+                            <i class="fa fa-truck" aria-hidden="true"></i><span>Incoming Shipping</span>
+                        </a>
+                    </li>
+
+                    <li class="oplist">
+                        <a ng-click="goto('inquiry')">
+                            <i class="fa fa-commenting" aria-hidden="true"></i><span>Product Inquiry</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('notes')">
+                            <i class="fa fa-sticky-note-o" aria-hidden="true"></i><span>Notes</span>
+                        </a>
+                    </li>
+                    <li class="oplist">
+                        <a ng-click="goto('staff-list')">
+                            <i class="fa fa-address-card-o" aria-hidden="true"></i><span>Staff</span>
+                        </a>
+                    </li>
+
+
+
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+<!-- responsive collapse -->
+<div class="col-md-12 pdg">
+    <a class="list-group-item visible-xs dropdown-toggle" style="background:#0ba7d6;color: #fff;font-weight: bold;"
+        data-toggle="collapse" data-target="#narrow-results">
+        Portal Menu</a>
+    <div id="narrow-results" class="narrow-results collapse mob">
+        <div class="shop-side-bar cd-dropdown">
+            <div class="list-group">
+                <!-- <a class="list-group-item mob" id="show" style="text-transform: capitalize;"> All Brands</a> -->
+
+                <a ng-click="goto('parcels')" class="list-group-item mob">
+                    <i class="fa fa-book" aria-hidden="true"></i><span>&nbsp;Parcels</span>
+                </a>
+                <a ng-click="goto('completedParcel')" class="list-group-item mob">
+                    <i class="fa fa-book" aria-hidden="true"></i><span>&nbsp;Completed Parcels</span>
+                </a>
+                <a ng-click="goto('pickupParcel')" class="list-group-item mob">
+                    <i class="fa fa-book" aria-hidden="true"></i><span>Pickup Parcels</span>
+                </a>
+                <a ng-click="goto('Support')" class="list-group-item mob">
+                    <i class="fa fa-book" aria-hidden="true"></i><span>&nbsp;Support</span>
+                </a>
+                <a ng-click="goto('products')" class="list-group-item mob" id="show">
+                    <i class="fa fa-product-hunt" aria-hidden="true"></i> &nbsp;<span>Products</span>
+                </a>
+                <a ng-click="goto('sub-products')" class="list-group-item mob">
+                    <i class="fa fa-product-hunt" aria-hidden="true"></i>&nbsp;<span>Sub Products</span>
+                </a>
+                <a ng-click="goto('wtb-list')" class="list-group-item mob">
+                    <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>&nbsp;<span>WTB</span>
+                </a>
+
+                <a ng-click="goto('wts-list')" class="list-group-item mob">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;<span>WTS</span>
+                </a>
+
+                <a ng-click="goto('allOrders')" class="list-group-item mob">
+                    <i class="fa fa-cart-plus" aria-hidden="true"></i>&nbsp;<span>Orders</span>
+                </a>
+
+                <a ng-click="goto('purchaseOrder')" class="list-group-item mob">
+                    <i class="fa fa-credit-card-alt" aria-hidden="true"></i>&nbsp;<span>Purchase Orders</span>
+                </a>
+
+                <a ng-click="goto('Outgoing-Shipping')" class="list-group-item mob">
+                    <i class="fa fa-truck" aria-hidden="true"></i>&nbsp;<span>Outgoing Shipping</span>
+                </a>
+
+                <a ng-click="goto('Incoming-Shipping')" class="list-group-item mob">
+                    <i class="fa fa-truck" aria-hidden="true"></i>&nbsp;<span>Incoming Shipping</span>
+                </a>
+
+                <a ng-click="goto('users')" class="list-group-item mob">
+                    <i class="fa fa-users" aria-hidden="true"></i>&nbsp;<span>Clients</span>
+                </a>
+
+                <a ng-click="goto('brands')" class="list-group-item mob">
+                    <i class="fa fa-font-awesome" aria-hidden="true"></i>&nbsp;<span>Brands</span>
+                </a>
+
+                <a ng-click="goto('inquiry')" class="list-group-item mob">
+                    <i class="fa fa-commenting" aria-hidden="true"></i>&nbsp;<span>Product Inquiry</span>
+                </a>
+
+                <a ng-click="goto('notes')" class="list-group-item mob">
+                    <i class="fa fa-sticky-note-o" aria-hidden="true"></i>&nbsp;<span>Notes</span>
+                </a>
+
+                <a ng-click="goto('staff-list')" class="list-group-item mob">
+                    <i class="fa fa-address-card-o" aria-hidden="true"></i>&nbsp;<span>Staff</span>
+                </a>
+
+                <a ng-click="goto('mailToClients')" class="list-group-item mob">
+                    <i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;<span>Mail</span>
+                </a>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

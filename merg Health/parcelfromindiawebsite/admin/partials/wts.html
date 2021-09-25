@@ -1,0 +1,166 @@
+<div>
+    <div class="page-container">
+        <header ng-include="'partials/left_menu.html'"></header>
+        <div class="main-content">
+            <header ng-include="'partials/user_menu.html'"></header>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="table_heading">Want To Sell</h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="add_btn_container">
+                        <button type="button" class="btn btn-primary" ng-click="goto('/wts-list')"
+                            style="margin-right: 150px; margin-top: 15px; float:right;">Back</button>
+
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <form name="poForm" data-ng-submit="purchaseOrder(poForm,product)" name="poForm"
+                                id="poForm" novalidate>
+                                <!-- <form role="form" name="exampleForm"  class="form-horizontal form-groups-bordered" required> -->
+                                
+                                <div class="form-group" ng-click="client2()">
+                                    <label for="field-1" class="col-sm-4 control-label">Client</label>
+                                    <div class="col-sm-8" style="padding-bottom: 10px;">
+
+                                        <select class="form-control" ng-model="product.client_id"
+                                            ng-options="client1.id as client1.company_name for client1 in clients | orderBy:'company_name' track by client1.id">
+                                            <option value="" selected data-default>Select Client</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-click="brand2()">
+                                    <label for="field-1" class="col-sm-4 control-label">Brand</label>
+                                    <div class="col-sm-8" style="padding-bottom: 10px;">
+                                        <select class="form-control" ng-model="product.brand"
+                                            ng-change="productBrand(product.brand)"
+                                            ng-options="brand1.brand as brand1.brand for brand1 in brands | orderBy:'brand' track by brand1.brand">
+                                            <option value="" selected data-default>Select Product Brand</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-group" ng-click="type2()">
+                                    <label for="field-1" class="col-sm-4 control-label">Product Type</label>
+                                    <div class="col-sm-8" style="padding-bottom: 10px;">
+                                        <select class="form-control" ng-model="product.type"
+                                            ng-options="type1.product_type as type1.product_type for type1 in types | orderBy:'product_type' track by type1.product_type">
+                                            <option value="" selected data-default>Select Product Type</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-group" ng-click="description(product)">
+                                    <label for="field-1" class="col-sm-4 control-label">Product Title</label>
+                                    <div class="col-sm-8" style="padding-bottom: 10px;">
+                                        <select class="form-control" ng-model="product.description"
+                                            ng-options="title1.id as title1.description for title1 in titles" ng-change="selectedItemChanged(product.description)">
+                                            <option value="" selected data-default>Select Product Title</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <label for="field-1" class="col-sm-4 control-label">Color</label>
+                                    <div class="col-sm-8" style="padding-bottom: 10px;">
+                                        <input type="text" class="form-control" name="color" id="color"
+                                            placeholder="Enter color" ng-model='product.color'>
+                                        <div ng-messages="poForm.$submitted && poForm.color.$error" class="error_msg">
+                                            <div ng-message="required">Enter color</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <label for="field-1" class="col-sm-4 control-label">EAN Number</label>
+                                    <div class="col-sm-8" style="padding-bottom: 10px;">
+                                        <input type="text" class="form-control" name="ean_number" id="ean_number"
+                                            placeholder="Enter EAN Number" ng-model='product.ean_number'
+                                            ng-model-options="{ allowInvalid: true }">
+                                        <div ng-messages="poForm.$submitted && poForm.ean_number.$error"
+                                            class="error_msg">
+                                            <div ng-message="required">Enter EAN Number</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <label for="field-1" class="col-sm-4 control-label">Qty</label>
+                                    <div class="col-sm-8" style="padding-bottom: 10px;">
+                                        <input type="text" class="form-control" name="qty" id="qty"
+                                            placeholder="Enter Qty" ng-model='product.qty'>
+                                        <div ng-messages="poForm.$submitted && poForm.qty.$error" class="error_msg">
+                                            <div ng-message="required">Enter Qty</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+
+                                <div class="form-group">
+                                    <label for="field-1" class="col-sm-4 control-label">Selling Price</label>
+                                    <div class="col-sm-8" style="padding-bottom: 10px;">
+                                        <input type="text" class="form-control" name="selling_price"
+                                            id="selling_price" placeholder="Enter Selling Price"
+                                            ng-model='product.selling_price'>
+                                        <div ng-messages="poForm.$submitted && poForm.selling_price.$error"
+                                            class="error_msg">
+                                            <div ng-message="required">Enter Selling Price</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <label for="field-1" class="col-sm-4 control-label">Warehouse</label>
+                                    <div class="col-sm-8" style="padding-bottom: 10px;">
+                                        <input type="text" class="form-control" name="warehouse" id="warehouse"
+                                            placeholder="Enter Warehouse" ng-model='product.warehouse'>
+                                        <div ng-messages="poForm.$submitted && poForm.warehouse.$error"
+                                            class="error_msg">
+                                            <div ng-message="required">Enter Warehouse</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <label for="field-1" class="col-sm-4 control-label">Image:</label>
+                                    <div class="col-sm-8" style="padding-bottom: 10px;">
+                                        <input type="file" class="form-control"
+                                            onchange="angular.element(this).scope().updateattachment()"
+                                            id="file_browse" ngf-select placeholder="Choose Image"
+                                            ng-model="product.file">
+                                        <div ng-messages="poForm.$submitted&& poForm.file_browse.$error"
+                                            class="error_msg">
+                                            <div ng-message="required">Choose Image</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-3 col-sm-8">
+                                        <button type="submit" class="btn btn_back">Submit</button>
+                                        <p ng-show="showaddpromsg" class="success_msg" style="text-align: center;">
+                                            {{addpromsg}}</p>
+                                        <p ng-show="showaddproductsemsg" class="error_msg"
+                                            style="text-align: center;">{{addproductsemsg}}</p>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="col-md-2">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer -->
+        </div>
+
+    </div>
+
+</div>

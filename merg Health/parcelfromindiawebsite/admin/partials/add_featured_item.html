@@ -1,0 +1,143 @@
+<div>
+    <div class="page-container">
+        <header ng-include="'partials/left_menu.html'"></header>
+        <div class="main-content">
+            <header ng-include="'partials/user_menu.html'"></header>
+            <hr />
+            <div class="row"> </div>
+            <h2 class="table_heading">Add Item</h2>
+           
+       <form name="itemform" id="loginform" novalidate>
+        
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="">
+                                                                                           
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Item Name</label>
+                                        <div class="col-sm-5" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="item_name" id="item_name" placeholder="Enter item Name" ng-model='item.item_name' required>
+                                            <div ng-messages="itemform.$submitted && itemform.item_name.$error" class="error_msg">
+                                                <div ng-message="required">Enter Item Name</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Item Description</label>
+                                        <div class="col-sm-5" style="padding-bottom: 10px;">
+                                            <textarea type="text" class="form-control" name="item_description" id="item_description" placeholder="Enter item Name" ng-model='item.item_description' required></textarea>
+                                            <div ng-messages="itemform.$submitted && itemform.item_name.$error" class="error_msg">
+                                                <div ng-message="required">Enter Item Name</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                                                                                                                          
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Item Detailed Description</label>
+                                        <div  class="col-sm-8" style="padding-bottom: 30px;">
+                                             <ng-ckeditor
+                                            	ng-model="item.detailed_description"
+                                            	ng-disabled="editorDIsabled"
+                                            	skin="moono"
+                                            	remove-plugins="iframe,flash,smiley">
+                                            </ng-ckeditor>
+                                             
+                                            <div ng-messages="itemform.$submitted && itemform.item_description.$error" class="error_msg">
+                                                <div ng-message="required">Enter Description </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                                                                             
+                                    <div class="form-group">
+                                        <label for="field-2" class="col-sm-3 control-label">Item Image</label>
+                                        <div class="col-sm-5" style="padding-bottom: 10px;">
+                                            <input accept="image/*" class="form-control" id="file_browse" onchange="angular.element(this).scope().updateattachment()" type="file" />
+                                        </div>
+                                    </div>
+                                  
+                                    
+                                    <div class="form-group">
+                                      <label for="field-2" class="col-sm-3 control-label" ng-if="item.item_image">Image</label>
+                                        <div class="col-sm-5" style="padding-bottom: 10px;">
+                                            <div id="fileDisplayArea" ng-if="item.item_image">
+                                                <img ng-src="{{item.item_image}}" style="max-width: 100%;width: 330px;padding-left: 51px;">
+                                                <br><br><span class="label label-primary pull-right" ng-click="clearImage()">Remove Image</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                        
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="">
+                                    
+                                    
+                                     <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Author Name</label>
+                                        <div class="col-sm-5" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="author_name" id="item_name" placeholder="Enter author name" ng-model='item.author_name' required>
+                                            <div ng-messages="itemform.$submitted && itemform.item_name.$error" class="error_msg">
+                                                <div ng-message="required">Enter Item Name</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                 
+                                                                                                                                            
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-2" class="col-sm-3 control-label">Author Image</label>
+                                        <div class="col-sm-5" style="padding-bottom: 10px;">
+                                            <input accept="image/*" class="form-control" id="file_browse1" onchange="angular.element(this).scope().addauthorimage()" type="file" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="field-2" class="col-sm-3 control-label" ng-if="item.author_image">Image</label>
+                                        <div class="col-sm-5" style="padding-bottom: 10px;">
+                                            <div id="fileDisplayArea" ng-if="item.author_image">
+                                                <img ng-src="{{item.author_image}}" style="max-width: 100%;width: 330px;padding-left: 51px;">
+                                                <br><br><span class="label label-primary pull-right" ng-click="clearImage()">Remove Image</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-3 col-sm-5">
+                                            <button type="submit" class="btn btn_back" ng-click="addfeatureditem(itemform,item)">Add item</button>
+                                            <p ng-show="showaddcatmsg" class="success_msg" style="text-align: center;font-size: medium;">{{addcatmsg}}</p>
+                                            <p ng-show="showaddcaterrrmsg" class="error_msg" style="text-align: center;font-size: medium;">{{addcaterrrmsg}}</p>
+                                        </div>
+                                    </div>  
+                                                     
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+          </form>
+          
+          
+      
+            
+            <!-- Footer -->
+        </div>
+
+    </div>
+
+</div>

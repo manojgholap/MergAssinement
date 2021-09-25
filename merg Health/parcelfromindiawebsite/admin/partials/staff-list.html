@@ -1,0 +1,92 @@
+<div>
+    <div class="page-container">
+        <header ng-include="'partials/left_menu.html'"></header>
+        <div class="main-content">
+            <header ng-include="'partials/user_menu.html'"></header>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="table_heading">Staff List</h2>
+                </div>
+                <div class="form-group col-md-3" style="margin-top: 12px;">
+                    <div class="icon-addon addon-sm">
+                        <input type="text" placeholder="Search Product" class="form-control" ng-model="searchtxt"type="text">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="add_btn_container">
+                        <button type="button" class="btn btn-primary addp" ng-click="goto('/add_staff')">Add Staff</button>
+                    </div>
+                </div>
+            </div>
+            <hr />
+
+            <div class="row">
+                <div class="col-sm-12" ng-init="allStaff()">
+                    <div class="panel panel-default table-hover table-responsive">
+                        <div class="panel-heading"> </div>
+                        <table class="table table-bordered table-striped datatable" id="table-2">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Sr. No</th>
+                                    <th>Staff Member</th>
+                                    <th>Mail</th>
+                                    <th>Number</th>
+                                    <th>Contact</th>
+                                    <th>Action</th>
+                                </tr>
+                            <tbody>
+                                </thead>
+                                <tr ng-repeat="staff in allstaff |  orderBy: reverse:true | filter: searchtxt">
+                                    <td>{{$index+1}}</td>
+                                    <td>{{staff.staff_name}}</td>
+                                    <td>{{staff.email}}</td>
+                                    <td>{{staff.number}}</td>
+                                    <td><a href="https://wa.me/{{ staff.number}}" target="_blank" style="font-size:20px;color:#03ab1a;"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                                        <a href="mailto:{{staff.email}}?subject={{staff.staff_name}}" target="_blank" style="font-size:20px;color:#0089cc;"><i class="fa fa-envelope-o" aria-hidden="true"></i></a></td>
+                                    <td>
+                                        <a class="btn btn-default btn-sm btn-icon icon-left"
+                                            ng-click='editStaff(staff.id)'>
+                                            <i class="entypo-pencil"></i> Edit
+                                        </a>
+                                        <a class="btn btn-danger btn-sm btn-icon icon-left" data-toggle="modal"
+                                            data-target="#del_po" ng-click='staffDel(staff.id)'>
+                                            <i class="entypo-cancel"></i> Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- <p ng-show="showdeletemsgmsg" class="success_msg">{{deletemsg}}</p> -->
+                    </div>
+                    <div style="text-align: center;font-size:25px;font-weight:600"><i ng-hide="allstaff" class="fa fa-spinner" aria-hidden="true">
+                        Page loading...</i></div>
+                </div>
+            </div>
+            <!-- Footer -->
+        </div>
+    </div>
+
+    <div class="modal fade" id="del_po" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="margin: 225px auto;">
+            <div class="modal-content delete">
+                <div class="modal-header" style="border:none;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="img/delete.svg">
+                    <h2>Confirm Delete ?</h2>
+                    <br>
+
+                    <div>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"
+                            style="padding:7px 20px;">Cancel</button>
+                        <button type="button" class="btn btn-primary" ng-click="confirmDelStaff(wts.id)"
+                            data-dismiss="modal" style="margin-left: 5px;">Delete</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+<div>
+    <div class="page-container">
+        <header ng-include="'partials/left_menu.html'"></header>
+        <div class="main-content">
+            <header ng-include="'partials/user_menu.html'"></header>
+            <hr />
+            <div class="row"> </div>
+            <h2 class="table_heading">Launched Gadgets Management</h2>
+            <div class="add_btn_container">
+                
+            </div>
+            <div class="row">
+                <div class="col-sm-12"> 
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading"> </div>
+                                <table class="table table-bordered table-striped datatable" id="table-2">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Price</th>
+                                            <th>Submitted By</th>
+                                            <th style="width: 10%;">Created Date</th>
+                                            <th style="width: 25%;">Action</th>
+                                        </tr>
+                                    <tbody>
+                                    </thead>
+                                        <tr ng-repeat="item in launchedGadgets">
+                                            <td>{{item.name}}</td>
+                                            <td><div ng-bind-html="item.description"></div></td>
+                                            <td>{{item.price}}</td>
+                                            <td>{{item.business_name}}</td>
+                                             <td>{{item.created_at | date:"dd-MM-yyyy"}}</td>
+                                            <td>
+                                                <a href="" class="btn btn-default btn-sm btn-icon icon-left" ng-click='edit(item.id)'>
+                                                    <i class="entypo-pencil"></i> Edit
+                                                </a>
+                                                <a class="btn btn-danger btn-sm btn-icon icon-left" data-toggle="modal" data-target="#del_cat"  ng-click='confirmcatdel(item.id)' >
+                                                    <i class="entypo-cancel"></i> Delete
+                                                </a>
+                                                <a href="" class="btn btn-info btn-sm btn-icon icon-left" ng-click='itemdata(item.id)'>
+                                                    <i class="entypo-info"></i> View
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!-- <p ng-show="showdeletemsgmsg" class="success_msg">{{deletemsg}}</p> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer -->
+        </div>
+    </div>
+
+    <div class="modal fade" id="del_cat" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="margin: 225px auto;">
+            <div class="modal-content delete">
+                <div class="modal-header" style="border:none;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="img/delete.svg">
+                    <br>
+                    <h3 class="modal-title" id="lineModalLabel">Delete gadget?</h3>
+                    <div>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" style="padding:7px 20px;">Cancel</button>
+                        <button type="button" class="btn btn-primary" ng-click="del(itemid)" data-dismiss="modal" style="margin-left: 5px;">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

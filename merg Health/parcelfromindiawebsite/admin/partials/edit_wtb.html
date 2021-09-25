@@ -1,0 +1,550 @@
+<div>
+    <div class="page-container">
+        <header ng-include="'partials/left_menu.html'"></header>
+        <div class="main-content">
+            <header ng-include="'partials/user_menu.html'"></header>
+            <hr />
+            <div class="row">
+                <div class="col-md-4">
+                    <h2 class="table_heading">Want To Buy</h2>
+                </div>
+                <div class="col-md-4" ng-init="wtbById()">
+                    <h2 class="table_heading">Lead Number: {{purchaseOrderWTSData.id}}</h2>
+                </div>
+                <div class="col-md-4">
+                    <div class="add_btn_container">
+                        <button type="button" class="btn btn-primary" ng-click="goto('/wtb-list')"
+                            style="margin-right: 150px; margin-top: 15px; float:right;">Back</button>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="">
+                                <form name="poForm" data-ng-submit="updatePurchaseOrderWTB(poForm,purchaseOrderWTSData)"
+                                    name="poForm" id="poForm" novalidate ng-init="wtbById()">
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Client</label>
+                                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="client" id="client"
+                                                placeholder="Enter Client" ng-model='purchaseOrderWTSData.client'>
+                                            <div ng-messages="poForm.$submitted && poForm.client.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter Client</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Brand</label>
+                                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="brand" id="brand"
+                                                placeholder="Enter Brand" ng-model='purchaseOrderWTSData.brand'>
+                                            <div ng-messages="poForm.$submitted && poForm.brand.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter Brand</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Product Type</label>
+                                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="product_type"
+                                                id="product_type" placeholder="Enter Product Type"
+                                                ng-model='purchaseOrderWTSData.product_type'>
+                                            <div ng-messages="poForm.$submitted && poForm.product_type.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter Product Type</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Product Title</label>
+                                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="product_title"
+                                                id="product_title" placeholder="Enter Product Title"
+                                                ng-model='purchaseOrderWTSData.product_title'>
+                                            <div ng-messages="poForm.$submitted && poForm.product_title.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter Product Title</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Color</label>
+                                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="colour"
+                                                id="colour" placeholder="Enter Product Color"
+                                                ng-model='purchaseOrderWTSData.colour'>
+                                            <div ng-messages="poForm.$submitted && poForm.colour.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter Product Color</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">EAN Number</label>
+                                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="ean_number" id="ean_number"
+                                                placeholder="Enter EAN Number"
+                                                ng-model='purchaseOrderWTSData.ean_number'>
+                                            <div ng-messages="poForm.$submitted && poForm.ean_number.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter EAN Number</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Qty</label>
+                                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="qty" id="qty"
+                                                placeholder="Enter Qty" ng-model='purchaseOrderWTSData.qty'>
+                                            <div ng-messages="poForm.$submitted && poForm.qty.$error" class="error_msg">
+                                                <div ng-message="required">Enter Qty</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Our Price</label>
+                                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="price" id="price"
+                                                placeholder="Enter Price" ng-model='purchaseOrderWTSData.price'>
+                                            <div ng-messages="poForm.$submitted && poForm.price.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter Price</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Total Price</label>
+                                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="total_price" id="total_price"
+                                                placeholder="Enter Total Price"
+                                                ng-model='purchaseOrderWTSData.total_price' required>
+                                            <div ng-messages="poForm.$submitted && poForm.price.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter Price</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Target Price</label>
+                                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="target_price"
+                                                id="target_price" placeholder="Enter Target Price"
+                                                ng-model='purchaseOrderWTSData.target_price'>
+                                            <div ng-messages="poForm.$submitted && poForm.target_price.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter Target Price</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Shipping Type</label>
+                                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                                            <select class="form-control" ng-model="purchaseOrderWTSData.shipping_type">
+                                                <option value="" selected data-default disabled>Shipping Type</option>
+                                                <option>EW-works</option>
+                                                <option>FOV</option>
+                                                <option>FOB</option>
+                                                <option>CIF</option>
+                                                <option>D2D</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Shipping Price</label>
+                                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="shipping_price"
+                                                id="shipping_price" placeholder="Enter Shipping Price"
+                                                ng-model='purchaseOrderWTSData.shipping_price'>
+                                            <div ng-messages="poForm.$submitted && poForm.shipping_price.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter Shipping Price</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Status</label>
+                                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                                            <select class="form-control" ng-model="purchaseOrderWTSData.status"
+                                                name="status">
+                                                <option value="" selected data-default>Select</option>
+                                                <option>Data Collected</option>
+                                                <option>Negotiation Started</option>
+                                                <option>Order Placed</option>
+                                                <option>Pending</option>
+                                                <option>Operations</option>
+                                                <option>Delivered</option>
+                                                <option>Lost</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Delivery Location</label>
+                                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="warehouse" id="warehouse"
+                                                placeholder="Enter Warehouse" ng-model='purchaseOrderWTSData.warehouse'
+                                                required>
+                                            <div ng-messages="poForm.$submitted && poForm.warehouse.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter Warehouse</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Staff Member</label>
+                                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                                            <select class="form-control" ng-model="purchaseOrderWTSData.team_member"
+                                                name="team_member">
+                                                <option value="" selected data-default>Select Staff Member</option>
+                                                <option>Amol</option>
+                                                <option>Manisha</option>
+                                                <option>Sneha</option>
+                                                <option>Jeni</option>
+                                                <option>Others</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br>
+
+                                    <div class="form-group subAddbtn">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <p ng-show="showuppromsg" class="success_msg" style="text-align: center;">
+                                                {{uppromsg}}</p>
+                                            <p ng-show="showupdateproerrmsg" class="error_msg"
+                                                style="text-align: center;">{{updateproerrmsg}}</p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Client details -->
+                        <div class="col-md-5" ng-init="clientById()">
+                            <div>
+                                <div style="text-align: center;font-size: 17px;font-weight: 600;">Client Details
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-sm btn-icon icon-left"
+                                        ng-click='viewHistory(clientDetails.id)'><i class="entypo-info"></i> View</a>
+                                </div>
+                                <form name="clientForm" data-ng-submit="updateClients(clientForm,clientDetails)"
+                                    name="clientForm" id="clientForm" novalidate ng-init="clientById()">
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-4 control-label">Business Id</label>
+                                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                                            <p type="text" class="form-control" name="business_id" id="business_id"
+                                                placeholder="Enter Business Id" ng-model='clientDetails.id'>
+                                                {{clientDetails.id}}</p>
+                                            <div ng-messages="clientForm.$submitted && clientForm.business_id.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter the business Id</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-4 control-label">Priority</label>
+                                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="priority" id="priority"
+                                                placeholder="Enter Priority" ng-model='clientDetails.priority' required>
+                                            <div ng-messages="clientForm.$submitted && clientForm.priority.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter the Priority</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-4 control-label">Business Name</label>
+                                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="company_name"
+                                                id="company_name" placeholder="Enter Business Name"
+                                                ng-model='clientDetails.company_name' required>
+                                            <div ng-messages="clientForm.$submitted &&  clientForm.company_name.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter Business Name</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-4 control-label">Client Name</label>
+                                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="client_name" id="client_name"
+                                                placeholder="Enter Client Name" ng-model='clientDetails.client_name'
+                                                required>
+                                            <div ng-messages="clientForm.$submitted &&  clientForm.client_name.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter Client Name</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-4 control-label">Contact Number</label>
+                                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="contact" id="contact"
+                                                placeholder="Enter Contact" ng-model='clientDetails.contact' required>
+                                            <div ng-messages="clientForm.$submitted && clientForm.contact.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter Contact Number</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group" ng-init="wtbById()">
+                                        <label for="field-1" class="col-sm-4 control-label">WhatsApp/Email</label>
+                                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                                            <a href="https://wa.me/{{clientDetails.contact}}" target="_blank"
+                                                style="font-size: 22px;color:#03ab1a;"><i class="fa fa-whatsapp"
+                                                    aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <a href="mailto:{{clientDetails.email}}?subject={{purchaseOrderWTSData.product_title}}"
+                                                target="_blank" style="font-size: 22px;color:#0089cc;"><i
+                                                    class="fa fa-envelope-o" aria-hidden="true"></i></a>
+                                            <div ng-messages="clientForm.$submitted && clientForm.contact.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter WhatsApp</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-4 control-label">Email</label>
+                                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="email" id="email"
+                                                placeholder="Enter Email" ng-model='clientDetails.email' required>
+                                            <div ng-messages="clientForm.$submitted && clientForm.email.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter email</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-4 control-label">Website</label>
+                                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="website" id="website"
+                                                placeholder="Enter Website" ng-model='clientDetails.website'>
+                                            <div ng-messages="clientForm.$submitted && clientForm.website.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter Website</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-4 control-label">Tags</label>
+                                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="tags" id="tags"
+                                                placeholder="Enter Tags" ng-model='clientDetails.tags'>
+                                            <div ng-messages="clientForm.$submitted && clientForm.tag.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter Tags</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-4 control-label">Notes</label>
+                                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="notes" id="notes"
+                                                placeholder="Enter Notes" ng-model='clientDetails.notes'>
+                                            <div ng-messages="clientForm.$submitted && clientForm.notes.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter Notes</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-4 control-label">Address</label>
+                                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                                            <textarea type="text" class="form-control" name="address" id="address"
+                                                rows="5" placeholder="Enter address"
+                                                ng-model='clientDetails.address'></textarea>
+                                            <div ng-messages="clientForm.$submitted && clientForm.address.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter address</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-4 control-label">Country</label>
+                                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="country" id="country"
+                                                placeholder="Enter Country" ng-model='clientDetails.country' required>
+                                            <div ng-messages="clientForm.$submitted && clientForm.country.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter Country</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group subAddbtn">
+                                            <button type="submit" class="btn btn-primary">Update User</button>
+                                            <p ng-show="showmsg" class="success_msg" style="text-align: center;">
+                                                {{successmsg}}</p>
+                                            <p ng-show="showerrmsg" class="error_msg" style="text-align: center;">
+                                                {{errormsg}}</p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Notes -->
+            <div class="col-sm-12" ng-init="notesById()">
+                <div class="row">
+
+                    <div class="form-group">
+                        <div class="add_btn_container" style="float:left;margin: 0px 0px 5px;">
+                            <button style="margin-left: 16px;" type="button" class="btn btn-success" data-toggle="modal"
+                                data-target="#modal_notes">Add Notes</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="panel panel-default table-hover table-responsive">
+                            <div class="panel-heading"> </div>
+                            <table class="table table-bordered table-striped datatable" id="table-2">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th style="width:10%;">Sr. No</th>
+                                        <th style="width:10%;">Date/Time</th>
+                                        <th style="width:20%;">Staff Member</th>
+                                        <th style="width:45%;">Notes</th>
+                                        <th style="width:45%;">% Closing</th>
+                                        <th style="width:45%;">Stock Preference</th>
+                                        <th style="width:15%;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="wtb in noteLists">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{wtb.date}}</td>
+                                        <td>{{wtb.staff}}</td>
+                                        <td>{{wtb.p_notes}}</td>
+                                        <td>{{wtb.closing}}</td>
+                                        <td>{{wtb.stockPreference}}</td>
+                                        <td>
+                                            <a class="btn btn-default btn-sm btn-icon icon-left"
+                                                ng-click='editNotes(wtb.nid);'>
+                                                <i class="entypo-pencil"></i> Edit
+                                            </a>
+                                            <a class="btn btn-info btn-sm btn-icon icon-left" data-toggle="modal"
+                                                data-target="#del_po" ng-click='delNotes(wtb.id)'>
+                                                <i class="entypo-cancel"></i> Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- delete popup -->
+<div class="modal fade" id="del_po" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="margin: 225px auto;">
+        <div class="modal-content delete">
+            <div class="modal-header" style="border:none;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="img/delete.svg">
+                <h2>Confirm Delete ?</h2>
+                <br>
+                <div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                        style="padding:7px 20px;">Cancel</button>
+                    <button type="button" class="btn btn-primary" ng-click="confirmDelNotes(wtb.id)"
+                        data-dismiss="modal" style="margin-left: 5px;">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- add notes -->
+<div class="modal fade" id="modal_notes" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="margin: 225px auto;">
+        <div class="modal-content">
+            <div class="modal-header" style="border:none;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body text-center" style="height:260px;">
+                <form name="notesForm" data-ng-submit="addNotesByStaff(notes)" name="notesForm" id="notesForm"
+                    novalidate>
+                    <div class="form-group">
+                        <label for="field-1" class="col-sm-3 control-label" style="text-align:right">Staff
+                            Member</label>
+                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                            <select class="form-control" ng-model="notes.staff">
+                                <option value="" selected data-default>Select Member</option>
+                                <option>Amol</option>
+                                <option>Manisha</option>
+                                <option>Sneha</option>
+                                <option>Jeni</option>
+                                <option>Others</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="field-1" class="col-sm-3 control-label" style="text-align:right">% Closing</label>
+                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                            <input type="text" class="form-control" name="closing" id="closing"
+                                placeholder="Enter % Closing" ng-model='notes.closing'>
+                            <div ng-messages="poForm.$submitted && poForm.closing.$error" class="error_msg">
+                                <div ng-message="required">Enter % Closing</div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="field-1" class="col-sm-3 control-label" style="text-align:right">Message</label>
+                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                            <textarea type="text" class="form-control" name="message" id="message" rows="5" cols="50"
+                                placeholder="Enter Message" ng-model='notes.message'>Message</textarea>
+                            <div ng-messages="notesForm.$submitted && notesForm.message.$error" class="error_msg">
+                                <div ng-message="required">Enter Message</div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-5">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"
+                                style="padding:7px 20px;">Cancel</button>
+                            <p ng-show="showaddpromsg" class="success_msg" style="text-align: center;">
+                                {{addpromsg}}</p>
+                            <p ng-show="showaddproductsemsg" class="error_msg" style="text-align: center;">
+                                {{addproductsemsg}}</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

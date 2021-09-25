@@ -1,0 +1,93 @@
+<div>
+    <div class="page-container">
+        <header ng-include="'partials/left_menu.html'"></header>
+        <div class="main-content">
+            <header ng-include="'partials/user_menu.html'"></header>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="table_heading">Add Category</h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="add_btn_container">
+                        <button type="button" class="btn btn-primary" ng-click="goto('/categorylist')" style="margin-right: 150px; margin-top: 15px; float:right;">Back</button>
+
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="">
+                                <form data-ng-submit="addNewCategory(cate)" name="addBrandForm1" id="addBrandForm1"
+                                    novalidate>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-7 control-label">Category Name</label>
+                                        <div class="col-sm-5" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="name" id="name" placeholder="Enter Category Name"
+                                                ng-model='cate.category_name'>
+                                            
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-7 control-label">Category small image:</label>
+                                        <div class="col-sm-5" style="padding-bottom: 10px;">
+                                            <input type="file" class="form-control"
+                                                onchange="angular.element(this).scope().updateattachment()" id="file_browse"
+                                                ngf-select placeholder="Choose Image" ng-model="cate.category_small_img" >
+                                            
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <!-- <div class="form-group">
+                                        <label for="field-1" class="col-sm-7 control-label">Category Large Image</label>
+                                        <div class="col-sm-5 style="padding-bottom: 10px;">
+                                            <input type="file" accept="image/*" class="form-control" id="file_browse2" placeholder="Enter Image"
+                                            onchange="angular.element(this).scope().uploadCatImage2()">
+                                            <div ng-messages="addBrandForm.$submitted && addBrandForm.brand.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter Image</div>
+                                            </div>
+                                        </div>
+                                    </div><br> -->
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-7 control-label">Ranking</label>
+                                        <div class="col-sm-5" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="ranking" id="ranking" placeholder="Enter Ranking"
+                                                ng-model='cate.ranking'>
+                                        </div>
+                                    </div><br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-7 control-label">Enable or not</label>
+                                        <div class="col-sm-5" style="padding-bottom: 10px;">
+                                            <select class="form-control" ng-model='cate.isEnabled'>
+                                                <option value="" selected data-default>Select 0 or 1</option>
+                                                <option>0</option>
+                                                <option>1</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <button type="submit"class="btn btn-primary" style="margin: 0 auto; display: block;">Add Category</button>
+                                        <p ng-show="showaddpromsg" class="success_msg" style="text-align: center;">{{addpromsg}}</p>
+                                        <p ng-show="showaddproductsemsg" class="error_msg" style="text-align: center;">{{addproductsemsg}}</p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer -->
+        </div>
+
+    </div>
+
+</div>

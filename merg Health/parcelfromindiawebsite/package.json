@@ -1,0 +1,38 @@
+{
+  "name": "simpleweb",
+  "version": "1.0.0",
+  "description": "Simpleweb is the skeleton to start a new project",
+  "main": "server.js",
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amolc/simpleweb.git"
+  },
+  "keywords": [
+    "simpleweb",
+    "nodejs",
+    "structure"
+  ],
+  "author": "Amol C",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amolc/simpleweb/issues"
+  },
+  "homepage": "https://github.com/amolc/simpleweb#readme",
+  "dependencies": {
+    "angular": "^1.8.2",
+    "angular-xeditable": "^0.10.2",
+    "aws-sdk": "^2.751.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "mysql-crud": "^0.1.4",
+    "ng-file-upload": "^12.2.13",
+    "nodemailer": "^6.6.0",
+    "nodemailer-mailgun-transport": "^2.1.3",
+    "nodemailer-mandrill-transport": "^1.2.0",
+    "serve-static": "^1.14.1"
+  }
+}

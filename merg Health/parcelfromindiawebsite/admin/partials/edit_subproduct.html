@@ -1,0 +1,194 @@
+<div>
+        <div class="page-container">
+            <header ng-include="'partials/left_menu.html'"></header>
+            <div class="main-content">
+                <header ng-include="'partials/user_menu.html'"></header>
+                <hr />
+                <div class="row">
+                    <div class="col-md-8">
+                        <h2 class="table_heading">Update Sub-Product</h2>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="add_btn_container">
+                            <button type="button" class="btn btn-primary" ng-click="goto('/sub-products')"
+                                style="margin-right: 20px; margin-top: 15px; float:right;">Back</button>
+    
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div class="col-sm-6" ng-init="subProductsById()">
+                                <div class="">
+                                    <form name="productForm" data-ng-submit="updateSubProducts(subproduct)"
+                                        name="loginfrm" id="loginform" novalidate>
+                                        <!-- <form role="form" name="exampleForm"  class="form-horizontal form-groups-bordered" required> -->
+                                        <div class="form-group">
+                                            <label for="field-1" class="col-sm-3 control-label">Date</label>
+                                            <div class="col-sm-5" style="padding-bottom: 10px;">
+                                                <input type="text" class="form-control" name="date"
+                                                    id="date" placeholder="Enter Date"
+                                                    ng-model='subproduct.date' required>
+                                                <div ng-messages="productForm.$submitted && productForm.date.$error"
+                                                    class="error_msg">
+                                                    <div ng-message="required">Enter the Product Date</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <label for="field-1" class="col-sm-3 control-label">Product Color</label>
+                                            <div class="col-sm-5" style="padding-bottom: 10px;">
+                                                <input type="text" class="form-control" name="color"
+                                                    id="color" placeholder="Enter Product Color"
+                                                    ng-model='subproduct.color' required>
+                                                <div ng-messages="productForm.$submitted && productForm.color.$error"
+                                                    class="error_msg">
+                                                    <div ng-message="required">Enter the Product Color</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <label for="field-1" class="col-sm-3 control-label">Selling Price</label>
+                                            <div class="col-sm-5" style="padding-bottom: 10px;">
+                                                <input type="text" class="form-control" name="pselling_price" id="pselling_price"
+                                                    placeholder="Enter Selling Price" ng-model='subproduct.pselling_price'
+                                                    required>
+                                                <div ng-messages="productForm.$submitted && productForm.pselling_price.$error"
+                                                    class="error_msg">
+                                                    <div ng-message="required">Enter Selling Price</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+    
+                                        <div class="form-group">
+                                            <label for="field-1" class="col-sm-3 control-label">EAN Number</label>
+                                            <div class="col-sm-5" style="padding-bottom: 10px;">
+                                                <input type="text" class="form-control" name="ean"
+                                                    id="ean" placeholder="Enter EAN Number"
+                                                    ng-model='subproduct.ean' required>
+                                                <div ng-messages="productForm.$submitted && productForm.ean.$error"
+                                                    class="error_msg">
+                                                    <div ng-message="required">Enter EAN Number</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <label for="field-1" class="col-sm-3 control-label">Spec</label>
+                                            <div class="col-sm-5" style="padding-bottom: 10px;">
+                                                <input type="text" class="form-control" name="p_spec"
+                                                    id="p_spec" placeholder="Enter Spec"
+                                                    ng-model='subproduct.p_spec' required>
+                                                <div ng-messages="productForm.$submitted && productForm.p_spec.$error"
+                                                    class="error_msg">
+                                                    <div ng-message="required">Enter Spec</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <label for="field-1" class="col-sm-3 control-label">Global Rank</label>
+                                            <div class="col-sm-5" style="padding-bottom: 10px;">
+                                                <input type="text" class="form-control" name="global_rank"
+                                                    id="global_rank" placeholder="Enter Global Rank"
+                                                    ng-model='subproduct.global_rank'>
+                                                <div ng-messages="productForm.$submitted && productForm.global_rank.$error"
+                                                    class="error_msg">
+                                                    <div ng-message="required">Enter Global Rank</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <label for="field-1" class="col-sm-3 control-label">Brand Rank</label>
+                                            <div class="col-sm-5" style="padding-bottom: 10px;">
+                                                <input type="text" class="form-control" name="brand_rank"
+                                                    id="brand_rank" placeholder="Enter Brand Rank"
+                                                    ng-model='subproduct.brand_rank'>
+                                                <div ng-messages="productForm.$submitted && productForm.brand_rank.$error"
+                                                    class="error_msg">
+                                                    <div ng-message="required">Enter Brand Rank</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <label for="field-1" class="col-sm-3 control-label">Seo Title</label>
+                                            <div class="col-sm-5" style="padding-bottom: 10px;">
+                                                <input type="text" class="form-control" name="seo_title"
+                                                    id="seo_title" placeholder="Enter Seo Title"
+                                                    ng-model='subproduct.seo_title'>
+                                                <div ng-messages="productForm.$submitted && productForm.seo_title.$error"
+                                                    class="error_msg">
+                                                    <div ng-message="required">Enter Seo Title</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <label for="field-1" class="col-sm-3 control-label">Seo Description</label>
+                                            <div class="col-sm-5" style="padding-bottom: 10px;">
+                                                <textarea type="text" class="form-control" name="seo_description"
+                                                    id="seo_description" placeholder="Enter Seo Description"
+                                                    ng-model='subproduct.seo_description'> </textarea>
+                                                <div ng-messages="productForm.$submitted && productForm.seo_description.$error"
+                                                    class="error_msg">
+                                                    <div ng-message="required">Enter Seo Description</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <label for="field-1" class="col-sm-3 control-label">Seo Keywords</label>
+                                            <div class="col-sm-5" style="padding-bottom: 10px;">
+                                                <textarea type="text" class="form-control" name="seo_keywords"
+                                                    id="seo_keywords" placeholder="Enter Seo Keywords"
+                                                    ng-model='subproduct.seo_keywords'></textarea>
+                                                <div ng-messages="productForm.$submitted && productForm.seo_keywords.$error"
+                                                    class="error_msg">
+                                                    <div ng-message="required">Enter Seo Keywords</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <label for="field-1" class="col-sm-3 control-label">Image</label>
+                                            <div class="col-sm-5" style="padding-bottom: 10px;">
+                                                <input accept="image/*" class="form-control" id="file_browseImg"
+                                                    onchange="angular.element(this).scope().addSubImage()"
+                                                    type="file" ng-model="subproduct.img" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group mr-b20 col-sm-12 col-md-12">
+                                            <div ng-if="subproduct.img">
+                                                <div id="fileDisplayArea" class="text-center">
+                                                    <img src="https://api.fountaintechies.com/assets/web/111/{{subproduct.img}}"
+                                                        style="width: 225px;height: 295px;text-align: center;margin: 0 auto;display: block;">
+                                                </div>
+                                            </div>
+                                        </div> 
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-3 col-sm-5">
+                                                <button type="submit" class="btn btn_back">Update Product</button>
+                                                <p ng-show="showuppromsg" class="success_msg" style="text-align: center;">
+                                                    {{uppromsg}}</p>
+                                                <p ng-show="showupproductsemsg" class="error_msg"
+                                                    style="text-align: center;">{{upproductsemsg}}</p>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Footer -->
+            </div>
+    
+        </div>
+    
+    </div>

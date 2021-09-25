@@ -1,0 +1,536 @@
+<div>
+    <div class="navbar-fixed-top" ng-include="getTopMenu()"></div>
+</div>
+<div style="margin-top: 50px;">
+    <div class="page-container">
+<!-- page containe starts here -->
+        <div ng-include="getLeftMenu()"></div>  
+
+        <div class="main-content">
+            <!-- main content starts here -->
+            <hr>
+            <div class="row">
+                <div class="col-lg-3">
+                    <h2 class="table_heading">Ship Cargo Parcels List</h2>
+                </div>
+
+                <div class="col-md">
+                    <div class="form-group" style="display: initial;">
+                        <div style="margin-top: 15px;">
+                            <select class="form-control" ng-model="_selectedStatus" ng-change="filterParcels('status', _selectedStatus, 'staff', _selectedStaff)">
+                                <option selected data-default>All</option>
+                                <option>Open</option>
+                                <option>Payment</option>
+                                <option>Pickup Pending</option>
+                                <option>Pickup Assigned</option>
+                                <option>Pickup Completed</option>
+                                <option>Pune Warehouse</option>
+                                <option>Kolkatta Warehouse</option>
+                                <option>Singapore Warehouse</option>
+                                <option>International Transit</option>
+                                <option>Delivery Warehouse</option>
+                                <option>Domestic Transit</option>
+                                <option>Delivered</option>
+                                <option>Completed</option>
+                                <option>Medicine</option>
+                                <option>Canceled</option>
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-group" style="display: initial;">
+                        <div style="margin-top: 15px;">
+                            <select class="form-control" ng-model="_selectedStaff" ng-change="filterParcels('status', _selectedStatus, 'staff', _selectedStaff)">
+                                <option selected data-default>All</option>
+                                <option>Amol </option>
+                                <option>Pavan</option>
+                                <option>Sneha</option>
+                                <option>Manisha</option>
+                                <option>Barsha</option>
+                                <option>Ajay</option>
+                                <option>Shankar Mumbai</option>
+                                <option>Kirti Delhi</option>
+                                <option>Selva</option>
+                                <option>Gagan</option>
+                                <option>Kundan</option>
+                                <option>Gaurav Medicine</option>
+                                <option>Professional Courier</option>
+                                <option>DTDC</option>
+                                <option>Trackon</option>
+                                <option>DHL</option>
+                                <option>DPEX</option>
+                                <option>Air Cargo</option>
+                                <option>Ship Cargo</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row col-md-6">
+                    <div ng-if="canReset" class="add_btn_container">
+                        <button type="button" class="btn btn-secondary addp" ng-click="staffshipcargo()">
+                            Reset Filter
+                        </button>
+                    </div>
+                    <div class="add_btn_container">
+                        <button type="button" class="btn btn-primary addp" ng-click="goto('/parcel_booking')">Book Parcels</button>
+                    </div>
+                    <div class="add_btn_container">
+                        <button type="button" class="btn btn-primary addp" ng-click="downloadCSV()">Download
+                            CSV
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-group col-md-3" style="margin-top:15px;">
+                    <div class="icon-addon addon-sm">
+                        <strong><label style="color: blue;">SEARCH BY BOOKING NO</label></strong>
+                        <input type="text" placeholder="Search By Booking No" class="form-control" ng-model="parcel.id"type="text">
+                    </div>
+                </div>
+
+                <div class="form-group col-md-3" style="margin-top:15px; ">
+                    <div class="icon-addon addon-sm">
+                        <strong><label style="color: blue;">SEARCH BY PHONE NO</label></strong>
+                        <input type="text" placeholder="Search By Phone" class="form-control" ng-model="parcel.from_phone"type="text">
+                    </div>
+                </div>
+
+                <div class="form-group col-md-3" style="margin-top:15px;">
+                    <div class="icon-addon addon-sm">
+                        <strong><label style="color: blue;">SEARCH BY NAME</label></strong>
+                        <input type="text" placeholder="Search By Name" class="form-control" ng-model="parcel.from_name"type="text">
+                    </div>
+                </div>
+            </div>
+            <hr />
+
+            <div class="row">
+                <div class="col-sm-12" ng-init="staffshipcargo()">
+                    <div style="position: fixed; background-color: white;">
+                        <div style="text-align: center;">
+                            <h4 ng-show="showUpdateMessage" class="success_msg" style="text-align: center;">
+                                {{updateMessage}}</h4>
+                            <h4 ng-show="showUpdateMessage2" class="error_msg"
+                                style="text-align: center;">{{updateMessage2}}</h4>
+                        </div>
+                    </div>
+                    <div class=" md">
+                        <div class="panel panel-default table-hover table-responsive">
+                            <div class="panel-heading"> </div>
+                            <table class="table table-bordered table-striped datatable" id="table-2">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Booking No</th>
+                                        <th>From</th>
+                                        <th>From City</th>
+                                        <th>To</th>
+                                        <th>To City</th>
+                                        <th>Date</th>
+                                        <th>Notes</th>
+                                        <th>Status</th>
+                                        <th>Req Days</th>
+                                        <th>Staff</th>
+                                        <th>Weight</th>
+                                        <th>Invoice Payment</th>
+                                        <th>Payment Received</th>
+                                        <th>Actual Payment</th>
+                                        <th>Balanced Payment</th>
+                                        <th>Booking Date</th>
+                                        <th>Delivery Date</th>
+                                        <th>Assign Booking</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr
+                                        ng-repeat="parcel in parcels|  orderBy: 'id':true | filter: parcel">
+                                        <td  style="cursor: pointer;color:blue;" ng-click="getDetails(parcel.id)">#{{parcel.id}}</td>
+                                        <td>{{parcel.from_name}} <br> 
+                                            {{parcel.from_address}} 
+                                            {{parcel.from_address2}}
+                                            {{parcel.from_postal}} 
+                                            {{parcel.from_city}} 
+                                            {{parcel.from_state}}
+                                            {{parcel.from_phone}},<br>
+                                            Email : {{parcel.from_email}},<br>
+                                            Weight : {{parcel.weight}},
+                                            Value : {{parcel.parcelValues}}
+                                        </td>
+                                        <td>{{parcel.from_city}}</td>
+                                        <td>{{parcel.to_name}} <br> {{parcel.to_address}} {{parcel.to_address2}}
+                                            {{parcel.to_postal}} {{parcel.to_city}} {{parcel.to_state}}
+                                            {{parcel.to_phone}}</td>
+                                        <td>{{parcel.to_city}}</td>
+                                        <td>{{setDate(parcel.created_at)}}</td>
+                                        <td ng-click="$event.stopPropagation();">
+                                            <textarea rows="4" type="text"  
+                                                        e-name="notes"
+                                                        class="form-control form-control-sm"
+                                                        ng-model="parcel.notes" 
+                                                        name="notes" style="width: 130px;">
+                                            </textarea>
+                                            <br>
+                                            <button type="button" class="btn btn-primary"
+                                                ng-click="updateParcelNotes(parcel.id,parcel.notes)">
+                                                Save
+                                            </button>
+                                        </td>                                       
+                                        <td ng-click="$event.stopPropagation();">
+                                            <form editable-form name="editableForm"
+                                                onaftersave="updateParcel(parcel.status,parcel.id)">
+                                                <select editable-text="parcel.status"
+                                                    ng-change="updateParcel(parcel.status,parcel.id)" e-name="status"
+                                                    onbeforesave="checkName($data)" class="form-control"
+                                                    ng-model="parcel.status" name="status" style="width: 130px;">
+                                                    <option value="" selected data-default>Select</option>
+                                                    <option>Open</option>
+                                                    <option>Payment Pending</option>
+                                                    <option>Payment Completed</option>
+                                                    <option>Pickup Pending</option>
+                                                    <option>Pickup Assigned</option>
+                                                    <option>Pickup Completed</option>
+                                                    <option>Pune Warehouse</option>
+                                                    <option>Kolkatta Warehouse</option>
+                                                    <option>Singapore Warehouse</option>
+                                                    <option>International Transit</option>
+                                                    <option>Delivery Warehouse</option>
+                                                    <option>Banglore Shipment</option>
+                                                    <option>Domestic Transit</option>
+                                                    <option>Network I</option>
+                                                    <option>Network II</option>
+                                                    <option>Network III</option>
+                                                    <option>Network IV</option>
+                                                    <option>Network V</option>
+                                                    <option>Kunal I</option>
+                                                    <option>Kunal II</option>
+                                                    <option>Kunal III</option>
+                                                    <option>Air Cargo I</option>
+                                                    <option>Air Cargo II</option>
+                                                    <option>Air Cargo III</option>
+                                                    <option>Air Cargo IV</option>
+                                                    <option>Air Cargo V</option>
+                                                    <option>Delivered</option>
+                                                    <option>Completed</option>
+                                                    <option>Medicine</option>
+                                                    <option>Canceled</option>
+                                                    <option>Issue</option>
+                                                    <option>Lost</option>
+                                                    <option>Refund</option>
+                                                    <option>Important</option>
+                                                </select>
+                                                <div class="buttons">
+                                                    <i class="fa fa-pencil" aria-hidden="true"
+                                                        ng-click="editableForm.$show()"
+                                                        ng-show="!editableForm.$visible"></i>
+                                                    <span ng-show="editableForm.$visible">
+                                                        <button type="submit" class="btn btn-primary"
+                                                            ng-disabled="editableForm.$waiting"
+                                                            style="padding:2px;margin: 2px 0px;">Save
+                                                        </button>
+                                                        <a type="button" class="btn btn-default"
+                                                            ng-disabled="editableForm.$waiting"
+                                                            ng-click="editableForm.$cancel()" style="padding:2px;">
+                                                            Cancel
+                                                        </a>
+                                                    </span>
+                                                </div>
+                                            </form>
+                                            <!-- <button class="btn btn-primary" ng-click="assignStaff(parcel.id,staff)">Assign</button> -->
+                                        </td>
+                                        <td>{{days(parcel.created_at)}} Days Ago</td>
+
+                                        <td style="text-align: center;" ng-click="$event.stopPropagation();">
+                                            <div class="form-group" ng-click="staff()">
+                                                <select style="width: fit-content;"
+                                                    class="form-control" ng-model="staff"
+                                                    ng-options="staff.username as staff.username for staff in staffs"
+                                                    ng-change="assignStaff(parcel.id,staff)">
+                                                    <option value="" selected data-default>Select</option>
+                                                </select>
+                                            </div>
+                                            <span>{{parcel.assigned_to}}</span>
+                                        </td>
+
+                                        <td ng-click="$event.stopPropagation();">
+                                            <form editable-form name="editableForm"
+                                                onaftersave="updateWeight(parcel.weight,parcel.id)">
+                                                <input type="text" 
+                                                        editable-text="parcel.weight"
+                                                        ng-change="updateWeight(parcel.weight,parcel.id)" 
+                                                        e-name="weight"
+                                                        class="form-control"
+                                                        ng-model="parcel.weight" 
+                                                        name="weight" style="width: 130px;">
+                                                <div class="buttons">
+                                                    <i class="fa fa-pencil" aria-hidden="true"
+                                                        ng-click="editableForm.$show()"
+                                                        ng-show="!editableForm.$visible"></i>
+                                                    <span ng-show="editableForm.$visible">
+                                                        <button type="submit" class="btn btn-primary"
+                                                            ng-disabled="editableForm.$waiting"
+                                                            style="padding:2px;margin: 2px 0px;">Save
+                                                        </button>
+                                                        <a type="button" class="btn btn-default"
+                                                            ng-disabled="editableForm.$waiting"
+                                                            ng-click="editableForm.$cancel()" style="padding:2px;">
+                                                            Cancel
+                                                        </a>
+                                                    </span>
+                                                </div>
+                                            </form>
+                                        </td>
+                                        <td>${{parcel.invoice_payment}}</td>
+                                        <td ng-click="$event.stopPropagation();">
+                                            <form editable-form name="editableForm"
+                                                onaftersave="updatePaymentReceived(parcel.id,parcel.payment_received)">
+                                                <input type="text" 
+                                                        editable-text="parcel.payment_received"
+                                                        ng-change="updatePaymentReceived(parcel.id,parcel.payment_received)" 
+                                                        e-name="payment_received"
+                                                        class="form-control"
+                                                        ng-model="parcel.payment_received" 
+                                                        name="payment_received" style="width: 130px;">
+                                                <div class="buttons">
+                                                    <i class="fa fa-pencil" aria-hidden="true"
+                                                        ng-click="editableForm.$show()"
+                                                        ng-show="!editableForm.$visible"></i>
+                                                    <span ng-show="editableForm.$visible">
+                                                        <button type="submit" class="btn btn-primary"
+                                                            ng-disabled="editableForm.$waiting"
+                                                            style="padding:2px;margin: 2px 0px;">Save
+                                                        </button>
+                                                        <a type="button" class="btn btn-default"
+                                                            ng-disabled="editableForm.$waiting"
+                                                            ng-click="editableForm.$cancel()" style="padding:2px;">
+                                                            Cancel
+                                                        </a>
+                                                    </span>
+                                                </div>
+                                            </form>
+                                        </td>
+                                        <td ng-click="$event.stopPropagation();">
+                                            <form editable-form name="editableForm"
+                                                onaftersave="updateActualPayment(parcel.id,parcel.actual_payment)">
+                                                <input type="text" 
+                                                        editable-text="parcel.actual_payment"
+                                                        ng-change="updateActualPayment(parcel.id,parcel.actual_payment)" 
+                                                        e-name="actual_payment"
+                                                        class="form-control"
+                                                        ng-model="parcel.actual_payment" 
+                                                        name="actual_payment" style="width: 130px;">
+                                                <div class="buttons">
+                                                    <i class="fa fa-pencil" aria-hidden="true"
+                                                        ng-click="editableForm.$show()"
+                                                        ng-show="!editableForm.$visible"></i>
+                                                    <span ng-show="editableForm.$visible">
+                                                        <button type="submit" class="btn btn-primary"
+                                                            ng-disabled="editableForm.$waiting"
+                                                            style="padding:2px;margin: 2px 0px;">Save
+                                                        </button>
+                                                        <a type="button" class="btn btn-default"
+                                                            ng-disabled="editableForm.$waiting"
+                                                            ng-click="editableForm.$cancel()" style="padding:2px;">
+                                                            Cancel
+                                                        </a>
+                                                    </span>
+                                                </div>
+                                            </form>
+                                        </td>
+                                        <td ng-click="$event.stopPropagation();">
+                                            <form editable-form name="editableForm"
+                                                onaftersave="updateBalPayment(parcel.id,parcel.bal_payment)">
+                                                <input type="text" 
+                                                        editable-text="parcel.bal_payment"
+                                                        ng-change="updateBalPayment(parcel.id,parcel.bal_payment)" 
+                                                        e-name="bal_payment"
+                                                        class="form-control"
+                                                        ng-model="parcel.bal_payment" 
+                                                        name="bal_payment" style="width: 130px;">
+                                                <div class="buttons">
+                                                    <i class="fa fa-pencil" aria-hidden="true"
+                                                        ng-click="editableForm.$show()"
+                                                        ng-show="!editableForm.$visible"></i>
+                                                    <span ng-show="editableForm.$visible">
+                                                        <button type="submit" class="btn btn-primary"
+                                                            ng-disabled="editableForm.$waiting"
+                                                            style="padding:2px;margin: 2px 0px;">Save
+                                                        </button>
+                                                        <a type="button" class="btn btn-default"
+                                                            ng-disabled="editableForm.$waiting"
+                                                            ng-click="editableForm.$cancel()" style="padding:2px;">
+                                                            Cancel
+                                                        </a>
+                                                    </span>
+                                                </div>
+                                            </form>
+                                        </td>
+                                        <td>{{getDate(parcel.created_at)}}</td>
+                                        <td>{{getDelivery(parcel.created_at)}}</td>
+
+
+                                        <!-- delete and notes button starts here -->
+                                        <td >
+                                            <div class="form-group" ng-click="domain()">
+                                                <select style="width: fit-content;"
+                                                    class="form-control" ng-model="franchise"
+                                                    ng-options="brand1.username as brand1.username for brand1 in brands"
+                                                    ng-change="assignBookingTo(franchise,parcel.id)">
+                                                    <option value="" selected data-default>Select</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            
+                                            <a type="button" class="btn btn-danger btn-sm btn-icon icon-left" data-toggle="modal"
+                                                data-target="#del_po" ng-click='removeparcel(parcel.id)'>
+                                                <i class="entypo-cancel"></i> Delete
+                                            </a>
+                                            <a type="button" class="btn btn-info btn-sm btn-icon icon-left" data-toggle="modal" style="margin: 5px 0px;border:none;"
+                                                data-target="#uploadDocuments" ng-click='addActivity(parcel.id,parcel.from_email)'>
+                                                <i class="entypo-plus"></i>Activity
+                                            </a>
+                                            <a type="button" class="btn btn-success btn-sm btn-icon icon-left" data-toggle="modal" style="margin: 5px 0px;border:none;" 
+                                                    data-target="#addNotes" ng-click='addNotes(parcel.id,parcel.assign_to,parcel.req_user)'>
+                                                    <i class="entypo-comment"></i>ADD Notes
+                                            </a>
+
+                                        </td>
+ 
+                                        <!-- delete and notes button ends here -->
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div ng-if="!parcels" style="text-align: center;font-size:25px;font-weight:600">
+                            <i ng-hide="desk" class="fa fa-spinner" aria-hidden="true">
+                                Page loading...
+                            </i>
+                        </div>
+                        <div ng-if="parcels && !parcels.length" style="text-align: center;font-size:25px;font-weight:600">
+                            <h3>No record found</h3>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal fade" id="del_po" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="margin: 225px auto;">
+                    <div class="modal-content delete">
+                        <div class="modal-header" style="border: 2px;">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <img src="img/delete.svg">
+                            <h2>Confirm Delete ?</h2>
+                            <br>
+                            <div>
+                                <button type="button" class="btn btn-default" data-dismiss="modal"
+                                    style="padding:7px 20px;">Cancel</button>
+                                <button type="button" class="btn btn-primary" ng-click="confremoveparcel(parcel.id)"
+                                    data-dismiss="modal" style="margin-left: 5px;">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="uploadDocuments" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="margin: 225px auto;">
+                    <div class="modal-content">
+                        <div class="modal-body text-center " style="height:300px;">
+                            <div >
+                            <form name="uploadDocumentsForm" 
+                            enctype="multipart/form-data" method="POST" 
+                            ng-submit="uploadDocuments(uploadDocumentsForm,document)" 
+                            name="uploadDocumentsForm" id="uploadDocumentsForm" novalidate>
+                                <div class="form-group">
+                                    <h3 for="field-1" class="col-sm-12">Activity</h3>
+                                </div>
+                                <hr>
+                                <div  style="text-align: left; padding-left: 10px;">
+                                    <div  class="">
+                                        <label >Choose File :</label> 
+                                            <input type="file" 
+                                            class="form-control-file"
+                                            onchange="angular.element(this).scope().updateattachment2()" 
+                                            id="document-file"
+                                            ngf-select placeholder="Choose Image" 
+                                            ng-model="document.file" ><br>
+                                    </div>
+                                    <div class="">
+                                        <label >Message</label><br>
+                                            <textarea id="message"
+                                            name="message"
+                                            ng-model="document.message" 
+                                            class="form-control" 
+                                            rows="3"></textarea><br>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <button type="submit" class="btn btn-primary" >Upload</button>
+                                        <button class="btn btn-light" ng-click="reload()">Cancel</button>
+                                    </div><br>
+                                </div>
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- add notes -->
+            <div class="modal fade" id="addNotes" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="margin: 225px auto;">
+                    <div class="modal-content">
+                        <!-- <div class="modal-header" style="border:none;">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div> -->
+                        <div class="modal-body text-center" style="height:330px;">
+                            <form name="supportform" data-ng-submit="addParcelsNotes(mydesk)" name="supportform" id="supportform"
+                                novalidate>
+                                <div class="form-group">
+                                    <h3 for="field-1" class="col-sm-12">Add Support Notes</h>
+                                        <div class="col-sm-12" style="padding-bottom: 10px;">
+                                            <textarea type="text" class="form-control" name="sup_notes" id="sup_notes" rows="10"
+                                                placeholder="Write Support Notes" ng-model='mydesk.sup_notes'></textarea>
+                                            <div ng-messages="supportform.$submitted && supportform.sup_notes.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter Notes</div>
+                                            </div>
+                                        </div>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-3 col-sm-5">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal"
+                                            style="padding:7px 20px;">Cancel</button>
+                                        <p ng-show="showaddpromsg" class="success_msg" style="text-align: center;">{{addpromsg}}
+                                        </p>
+                                        <p ng-show="showaddproductsemsg" class="error_msg" style="text-align: center;">
+                                            {{addproductsemsg}}</p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- main content ends here -->
+        </div>
+<!-- page containe ends here -->
+    </div>
+    
+    <!-- <div style="height: auto;" class="row">
+        <div class="col navbar-dark bg-dark">
+            <p style="text-align: center; color: white;">
+                @admin.parcelfromindia.com
+            </p>   
+        </div>
+    </div>     -->
+</div>

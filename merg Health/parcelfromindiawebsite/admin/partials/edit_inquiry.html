@@ -1,0 +1,148 @@
+<div>
+    <div class="page-container">
+        <header ng-include="'partials/left_menu.html'"></header>
+        <div class="main-content">
+            <header ng-include="'partials/user_menu.html'"></header>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="table_heading">Inquiry</h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="add_btn_container">
+                        <button type="button" class="btn btn-primary" ng-click="goto('/inquiry')"
+                            style="margin-right: 150px; margin-top: 15px; float:right;">Back</button>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="">
+                                <form name="poForm" data-ng-submit="updateInquiry(poForm,inquiryData)"
+                                    name="poForm" id="poForm" novalidate ng-init="inquiryById()">
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Client Id</label>
+                                        <div class="col-sm-5" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="client_id" id="client_id"
+                                                placeholder="Enter Client Id" ng-model='inquiryData.client_id'>
+                                            <div ng-messages="poForm.$submitted && poForm.client_id.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter Client Id</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Client</label>
+                                        <div class="col-sm-5" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="client" id="client"
+                                                placeholder="Enter Client" ng-model='inquiryData.client'>
+                                            <div ng-messages="poForm.$submitted && poForm.client.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter Client</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Brand</label>
+                                        <div class="col-sm-5" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="brand" id="brand"
+                                                placeholder="Enter Brand" ng-model='inquiryData.brand'>
+                                            <div ng-messages="poForm.$submitted && poForm.brand.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter Brand</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Product Type</label>
+                                        <div class="col-sm-5" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="product_type"
+                                                id="product_type" placeholder="Enter Product Type"
+                                                ng-model='inquiryData.product_type'>
+                                            <div ng-messages="poForm.$submitted && poForm.product_type.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter Product Type</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Product Title</label>
+                                        <div class="col-sm-5" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="product_title"
+                                                id="product_title" placeholder="Enter Product Title"
+                                                ng-model='inquiryData.product_title'>
+                                            <div ng-messages="poForm.$submitted && poForm.product_title.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter Product Title</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">EAN Number</label>
+                                        <div class="col-sm-5" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="ean_number" id="ean_number"
+                                                placeholder="Enter EAN Number"
+                                                ng-model='inquiryData.ean_number'>
+                                            <div ng-messages="poForm.$submitted && poForm.ean_number.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter EAN Number</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Price</label>
+                                        <div class="col-sm-5" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="price" id="price"
+                                                placeholder="Enter Price" ng-model='inquiryData.price'
+                                                required>
+                                            <div ng-messages="poForm.$submitted && poForm.price.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter Price</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Notes</label>
+                                        <div class="col-sm-5" style="padding-bottom: 10px;">
+                                            <input type="text" class="form-control" name="notes" id="notes"
+                                                placeholder="Enter Notes"
+                                                ng-model='inquiryData.notes' required>
+                                            <div ng-messages="poForm.$submitted && poForm.notes.$error"
+                                                class="error_msg">
+                                                <div ng-message="required">Enter Notes</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-3 col-sm-5">
+                                            <button type="submit" class="btn btn_back">Submit</button>
+                                            <p ng-show="showuppromsg" class="success_msg" style="text-align: center;">
+                                                {{uppromsg}}</p>
+                                            <p ng-show="showupdateproerrmsg" class="error_msg"
+                                                style="text-align: center;">{{updateproerrmsg}}</p>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer -->
+        </div>
+
+    </div>
+
+</div>

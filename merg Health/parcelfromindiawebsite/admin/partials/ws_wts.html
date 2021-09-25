@@ -1,0 +1,84 @@
+    <div class="page-container">
+        <header ng-include="'partials/left_menu.html'"></header>
+        <div class="main-content">
+            <header ng-include="'partials/user_menu.html'"></header>
+            <hr />
+            <div class="row">
+                <div class="col-md-4">
+                    <h2 class="table_heading">Wholesaler's WTS List</h2>
+                </div>
+                <div class="col-md-8"></div>
+            </div>
+            <hr />
+            <div id="exportthis" class="row" ng-init="viewWSWtsProList()">
+                <div class="panel panel-default table-hover table-responsive">
+                    <table class="table table-bordered table-striped datatable" id="table-2">
+                        <thead id="tc" class="thead-light">
+                            <tr>
+                                <th>Date</th>
+                                <th>Client</th>
+                                <th>Title</th>
+                                <th>Color</th>
+                                <th>EAN</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th>Total Price</th>
+                                <th>Status</th>
+                                <th>Warehouse</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="wts in viewWSList |  orderBy: 'wts_id':true | filter: searchtxt">
+                                <td>{{wts.date}}</td>
+                                <td ng-click='viewHistory(wts.client_id)' style="cursor: pointer;">{{wts.c_company}}</td>
+                                <td>{{wts.p_title}}</td>
+                                <td>{{wts.color}}</td>
+                                <td>{{wts.ean}}</td>
+                                <td>{{wts.price}}</td>
+                                <td>{{wts.qty}}</td>
+                                <td>{{wts.total_price}}</td>
+                                <td>
+                                    <a href="#" editable-select="wts.wts_status" onaftersave="changeWSWtsStatus(wts.item_id,wts.wts_status)"  e-ng-options="s.option as s.option for s in ws_status">
+                                        {{ wts.wts_status || 'Empty Status' }}
+                                    </a>
+                                </td>
+                                <td>{{wts.warehouse}}</td>
+                                <td>
+                                    <a class="btn btn-danger btn-sm btn-icon icon-left" data-toggle="modal"
+                                        data-target="#del_po" ng-click='wsWtsDel(wts.item_id)'>
+                                        <i class="entypo-cancel"></i> Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="text-align: center;font-size:25px;font-weight:600"><i ng-hide="viewWSList" class="fa fa-spinner" aria-hidden="true">
+                    Page loading...</i></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="del_po" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="margin: 225px auto;">
+            <div class="modal-content delete">
+                <div class="modal-header" style="border:none;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="img/delete.svg">
+                    <h2>Confirm Delete ?</h2>
+                    <br>
+
+                    <div>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"
+                            style="padding:7px 20px;">Cancel</button>
+                        <button type="button" class="btn btn-primary" ng-click="confirmWsWTSDel()"
+                            data-dismiss="modal" style="margin-left: 5px;">Delete</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

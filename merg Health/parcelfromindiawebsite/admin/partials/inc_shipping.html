@@ -1,0 +1,96 @@
+<div class="page-container">
+    <header ng-include="'partials/left_menu.html'"></header>
+    <div class="main-content">
+        <header ng-include="'partials/user_menu.html'"></header>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="table_heading">Incoming Shpping List</h2>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-sm-12" ng-init="getIncomingShipping()">
+                <div class="panel panel-default table-hover table-responsive">
+                    <div class="panel-heading"> </div>
+                    <table class="table table-bordered table-striped datatable" id="table-2">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>PO No.</th>
+                                <th>Shipping No.</th>
+                                <th>Vendor</th>
+                                <th>Ship To</th>
+                                <th style="width:15%">Packing List</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        <thead>
+                        <tbody>
+                            <tr ng-repeat="product in incomingShippinglist |  orderBy: reverse:true" style="text-align: center">
+                                <td ng-click="redirectViewPO(product.po_number,product.c_id)" style="cursor:pointer">{{product.po_number}}</td>
+                                <td>{{product.ship_no}}</td>
+                                <td ng-click="viewHistory(product.c_id)" style="cursor: pointer;">
+                                    <h4>{{product.company_name}}</h4>
+                                    <p>{{product.address}}</p>
+                                </td>
+                                <td>
+                                    <h4>Evergo Logistics(Hong Kong) Limited</h4>
+                                    <p>Flat E & F, 11/F, Wah Lik Industrial Centre, 459-469 Castle Peak Road, Tsuen Wan, N.T</p>
+                                </td>
+                                <td ng-click="redirectPOpacking(product.po_number,product.c_id)"><img src="../img/packing.png" alt="packing-img" style="width: 40%;"></td>
+                                <td>
+                                    <form editable-form name="editableForm" onaftersave="updateIncStatus(product.po_number,product.inc_status)">
+                                        <div>
+                                            <span id="textC" editable-text="product.inc_status" e-name="inc_status" onbeforesave="checkName($data)" >{{ product.inc_status || 'Add Status' }}</span>
+                                        </div>
+                                        <div class="buttons">
+                                            <i class="fa fa-pencil" aria-hidden="true" ng-click="editableForm.$show()" ng-show="!editableForm.$visible"></i>
+                                            <span ng-show="editableForm.$visible">
+                                                <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting" style="padding:2px;margin: 2px 0px;">Save
+                                                </button>
+                                                <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()" style="padding:2px;">
+                                                Cancel
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </form> 
+                                </td>
+                                <td>
+                                    <a class="btn btn-info btn-sm btn-icon icon-left" data-toggle="modal"
+                                        data-target="#del_odr" ng-click='incDel(product.po_number)'>
+                                        <i class="entypo-cancel"></i> Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        <tbody>
+                    </table>
+                </div>
+                <div style="text-align: center;font-size:25px;font-weight:600"><i ng-hide="incomingShippinglist" class="fa fa-spinner" aria-hidden="true">
+                    Page loading...</i></div>
+            </div>
+        </div>
+        <!-- Footer -->
+    </div>
+</div>
+
+<div class="modal fade" id="del_odr" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="margin: 225px auto;">
+        <div class="modal-content delete">
+            <div class="modal-header" style="border:none;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="img/delete.svg">
+                <h2>Confirm Delete ?</h2>
+                <br>
+                <div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                        style="padding:7px 20px;">Cancel</button>
+                    <button type="button" class="btn btn-primary" ng-click="incomingShippDel()"
+                        data-dismiss="modal" style="margin-left: 5px;">Delete</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

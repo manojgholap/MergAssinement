@@ -1,0 +1,175 @@
+<div>
+    <div class="page-container">
+        <header ng-include="'partials/left_menu.html'"></header>
+        <div class="main-content">
+            <header ng-include="'partials/user_menu.html'"></header>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="table_heading">Add Sub Product</h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="add_btn_container">
+                        <button type="button" class="btn btn-primary" ng-click="goto('/products')"
+                            style="margin-right: 150px; margin-top: 15px; float:right;">Back</button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="">
+                            <!-- sub-product model -->
+                            <!-- <div class="modal fade" id="modal_sub" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                <div class="modal-dialog" style="margin: 225px auto;">
+                                    <div class="modal-content"> -->
+                                        <div class="modal-body text-center" style="height:300px;">
+                                            <form name="poForm" data-ng-submit="addSubProduct(poForm,product)" name="poForm" id="poForm"
+                                                novalidate>
+                                                <div class="form-group">
+                                                    <label for="field-1" class="col-sm-3 control-label">Global Rank</label>
+                                                    <div class="col-sm-5" style="padding-bottom: 10px;">
+                                                        <input type="text" class="form-control" name="qty" id="global_rank" placeholder="Enter Global Rank"
+                                                            ng-model='product.global_rank'>
+                                                        <div ng-messages="poForm.$submitted && poForm.global_rank.$error" class="error_msg">
+                                                            <div ng-message="required">Enter Global Rank</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="field-1" class="col-sm-3 control-label">Brand Rank</label>
+                                                    <div class="col-sm-5" style="padding-bottom: 10px;">
+                                                        <input type="text" class="form-control" name="brand_rank" id="brand_rank" placeholder="Enter Brand Rank"
+                                                            ng-model='product.brand_rank'>
+                                                        <div ng-messages="poForm.$submitted && poForm.brand_rank.$error" class="error_msg">
+                                                            <div ng-message="required">Enter Brand Rank</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="field-1" class="col-sm-3 control-label">EAN Number</label>
+                                                    <div class="col-sm-5" style="padding-bottom: 10px;">
+                                                        <input type="text" class="form-control" name="qty" id="ean" placeholder="Enter EAN Number"
+                                                            ng-model='product.ean'>
+                                                        <div ng-messages="poForm.$submitted && poForm.ean.$error" class="error_msg">
+                                                            <div ng-message="required">Enter EAN Number</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-group">
+                                                    <label for="field-1" class="col-sm-3 control-label">Color</label>
+                                                    <div class="col-sm-5" style="padding-bottom: 10px;">
+                                                        <input type="text" class="form-control" name="color" id="color"
+                                                            placeholder="Enter Color" ng-model='product.color'>
+                                                        <div ng-messages="poForm.$submitted && poForm.color.$error" class="error_msg">
+                                                            <div ng-message="required">Enter Color</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-group">
+                                                    <label for="field-1" class="col-sm-3 control-label">Spec</label>
+                                                    <div class="col-sm-5" style="padding-bottom: 10px;">
+                                                        <input type="text" class="form-control" name="p_spec" id="p_spec"
+                                                            placeholder="Enter Spec" ng-model='product.p_spec'>
+                                                        <div ng-messages="poForm.$submitted && poForm.p_spec.$error" class="error_msg">
+                                                            <div ng-message="required">Enter Spec</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-group">
+                                                    <label for="field-1" class="col-sm-3 control-label">Selling Price</label>
+                                                    <div class="col-sm-5" style="padding-bottom: 10px;">
+                                                        <input type="text" class="form-control" name="price" id="pselling_price"
+                                                            placeholder="Enter Selling Price" ng-model='product.pselling_price'>
+                                                        <div ng-messages="poForm.$submitted && poForm.pselling_price.$error" class="error_msg">
+                                                            <div ng-message="required">Enter Selling Price</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-group">
+                                                    <label for="field-1" class="col-sm-3 control-label">SEO Title </label>
+                                                    <div class="col-sm-5" style="padding-bottom: 10px;">
+                                                        <input type="text" class="form-control" name="seo_title" id="seo_title"
+                                                            placeholder="Enter SEO Title" ng-model='product.seo_title'
+                                                            ng-model-options="{ allowInvalid: true }">
+                                                        <div ng-messages="addProductForm.$submitted && addProductForm.seo_title.$error"
+                                                            class="error_msg">
+                                                            <div ng-message="required"> Enter SEO Title </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-group">
+                                                    <label for="field-1" class="col-sm-3 control-label">SEO Description</label>
+                                                    <div class="col-sm-5" style="padding-bottom: 10px;">
+                                                        <textarea type="text" class="form-control" name="seo_description" id="seo_description"
+                                                            placeholder="Enter Product Description" ng-model='product.seo_description'
+                                                            ng-model-options="{ allowInvalid: true }"></textarea>
+                                                        <div ng-messages="addProductForm.$submitted && addProductForm.seo_description.$error"
+                                                            class="error_msg">
+                                                            <div ng-message="required"> Enter SEO Description </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-group">
+                                                    <label for="field-1" class="col-sm-3 control-label">SEO Keywords</label>
+                                                    <div class="col-sm-5" style="padding-bottom: 10px;">
+                                                        <textarea type="text" class="form-control" name="seo_keywords" id="seo_keywords"
+                                                            placeholder="Enter Product Keywords" ng-model='product.seo_keywords'
+                                                            ng-model-options="{ allowInvalid: true }"></textarea>
+                                                        <div ng-messages="addProductForm.$submitted && addProductForm.seo_keywords.$error"
+                                                            class="error_msg">
+                                                            <div ng-message="required"> Enter SEO Keywords </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-group">
+                                                    <label for="field-1" class="col-sm-3 control-label">Image</label>
+                                                    <div class="col-sm-5" style="padding-bottom: 10px;">
+                                                        <input accept="image/*" class="form-control" id="file_browseImg"
+                                                            onchange="angular.element(this).scope().addSubImage()"
+                                                            type="file" />
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="form-group">
+                                                    <div  ng-if="product.img">
+                                                        <div id="fileDisplayArea1" class="text-center">
+                                                            <img src="https://api.fountaintechies.com/assets/web/111/{{product.img}}" style="border:2px solid grey;width: 225px;height: 295px;text-align: center;margin: 0 auto;display: block;">
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+                                                <br>
+                                                <div class="form-group">
+                                                    <div class="col-sm-offset-3 col-sm-5">
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal"
+                                                            style="padding:7px 20px;">Cancel</button>
+                                                        <p ng-show="showaddpromsg" class="success_msg" style="text-align: center;">{{addpromsg}}
+                                                        </p>
+                                                        <p ng-show="showaddproductsemsg" class="error_msg" style="text-align: center;">
+                                                            {{addproductsemsg}}</p>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    <!-- </div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer -->
+        </div>
+
+    </div>
+
+</div>

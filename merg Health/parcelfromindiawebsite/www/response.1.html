@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html lang="en" data-lt-installed="true" ng-app="80consult">
+
+<head>
+    <title>Parcelfromindia</title>
+    <link rel="shortcut icon" type="image/png" href="/80shopslogo.ico" />
+    <link rel="shortcut icon" type="image/png" href="/80shopslogo.ico" />
+    <link rel="canonical" href="www.80shops.com/singapore/parceldelivery">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Contactless Parcel Delivery for singapore">
+    <meta name="keywords" content="parcel delivery, food delivery, grocery delivery">
+    <meta name="author" content="Anand C">
+
+    
+
+    <style>
+        .carousel-caption {
+            left: 60px;
+        }
+
+        /* On screens that are 600px wide or less, make the menu links stack on top of each other instead of next to each other */
+        @media screen and (max-width: 600px) {
+            .addshop {
+                float: right;
+            }
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+
+        }
+
+        @font-face {
+            font-family: "Gilroy Light";
+            src: url("//db.onlinewebfonts.com/t/0744a43ed7aac352ec78c1404c890d72.eot");
+            src: url("//db.onlinewebfonts.com/t/0744a43ed7aac352ec78c1404c890d72.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/0744a43ed7aac352ec78c1404c890d72.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/0744a43ed7aac352ec78c1404c890d72.woff") format("woff"), url("//db.onlinewebfonts.com/t/0744a43ed7aac352ec78c1404c890d72.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/0744a43ed7aac352ec78c1404c890d72.svg#Gilroy Light") format("svg");
+        }
+
+        @font-face {
+            font-family: "Gilroy";
+            src: url("//db.onlinewebfonts.com/t/1dc8ecd8056a5ea7aa7de1db42b5b639.eot");
+            src: url("//db.onlinewebfonts.com/t/1dc8ecd8056a5ea7aa7de1db42b5b639.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/1dc8ecd8056a5ea7aa7de1db42b5b639.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/1dc8ecd8056a5ea7aa7de1db42b5b639.woff") format("woff"), url("//db.onlinewebfonts.com/t/1dc8ecd8056a5ea7aa7de1db42b5b639.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/1dc8ecd8056a5ea7aa7de1db42b5b639.svg#Gilroy") format("svg");
+        }
+
+        @font-face {
+            font-family: "Gilroy SemiBold";
+            src: url("//db.onlinewebfonts.com/t/000833a3a58fb083c44b9de42c2ff0a2.eot");
+            src: url("//db.onlinewebfonts.com/t/000833a3a58fb083c44b9de42c2ff0a2.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/000833a3a58fb083c44b9de42c2ff0a2.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/000833a3a58fb083c44b9de42c2ff0a2.woff") format("woff"), url("//db.onlinewebfonts.com/t/000833a3a58fb083c44b9de42c2ff0a2.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/000833a3a58fb083c44b9de42c2ff0a2.svg#Gilroy SemiBold") format("svg");
+        }
+
+        @font-face {
+            font-family: "Raleway";
+            src: url("//db.onlinewebfonts.com/t/6e4a9679e65cc320746c3e5d48e51f28.eot");
+            src: url("//db.onlinewebfonts.com/t/6e4a9679e65cc320746c3e5d48e51f28.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/6e4a9679e65cc320746c3e5d48e51f28.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/6e4a9679e65cc320746c3e5d48e51f28.woff") format("woff"), url("//db.onlinewebfonts.com/t/6e4a9679e65cc320746c3e5d48e51f28.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/6e4a9679e65cc320746c3e5d48e51f28.svg#Raleway") format("svg");
+        }
+
+
+
+        .title {
+            font-family: Gilroy SemiBold, sans-serif;
+            font-weight: 600;
+            color: black;
+            font-size: 20px;
+            text-align: left;
+            text-transform: capitalize;
+            line-height: 19px;
+            margin-top: 10px;
+
+        }
+
+
+
+        .title a:link {
+            font-family: Gilroy SemiBold, sans-serif;
+            font-weight: 600;
+            text-decoration: none;
+            color: black;
+            font-size: 9px;
+            text-align: left;
+            text-transform: capitalize;
+        }
+
+        .areas {
+            font-family: Gilroy SemiBold, sans-serif;
+            font-weight: 400;
+            color: #000070;
+            font-size: 20px;
+            text-align: left;
+            text-transform: capitalize;
+            line-height: 9px;
+            margin-top: 10px;
+
+        }
+
+        .heading {
+            font-family: Gilroy SemiBold, sans-serif;
+            font-weight: 600;
+            color: black;
+            font-size: 45px;
+        }
+
+        .sub-heading {
+            font-family: Gilroy SemiBold, sans-serif;
+            font-weight: 500;
+            color: #828282;
+            font-size: 30px;
+        }
+
+        .mainpara {
+            font-family: Gilroy, sans-serif;
+            font-weight: 600;
+            color: black;
+            font-size: 18px;
+            line-height: 24px;
+            text-align: left;
+        }
+
+        .mainpara-18 {
+            font-family: Gilroy, sans-serif;
+            font-weight: 600;
+            color: #828282;
+            font-size: 18px;
+            line-height: 20px;
+            text-align: left;
+        }
+
+
+        .mainpara-12 {
+            font-family: Gilroy, sans-serif;
+            font-weight: 600;
+            color: #828282;
+            font-size: 12px;
+            line-height: 10px;
+            text-align: left;
+        }
+    </style>
+
+</head>
+
+<body ng-controller="homeCtrl">
+    <div class="container-fluid" style="background-color:#c41a02;">
+        <div class="container">
+            <div class="row" style="min-height:50px;color:#ffffff;padding:20px 20px;">
+                <div class="col-sm-8" style="width:40%;">
+                    <a href="/">
+                        <!-- <strong style="font-size:20px; color: white; ">80shops.com</strong> -->
+                        <img src="/assets/images/80shopslogo.png" style="width:50px; height:60px;" />
+                    </a>
+                </div>
+                <!-- <div class="col-sm-2" style="width:60%;margin-top:20px;">
+                    <a href="/newvendor.html " class="addshop"
+                        style="border:2px solid white;padding:3px 20px 3px 20px; color: white;text-decoration: none;">ADD
+                        SHOP</a>
+                </div> -->
+                <div class="col-sm-4" style="width:60%;margin-top:20px;">
+                    <a href="/online-store.html " class="addshop"
+                        style="border:2px solid white;padding:3px 20px 3px 20px; color: white;text-decoration: none;">
+                        Become a Store Manager
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row" style="padding:20px 20px;text-align:center;">
+            <div class="col-sm-7 text-left">
+                <img src="/assets/images/color-logo.png" width="250px" height="250px" />
+            </div>
+
+
+        </div>
+
+        <div class="row ">
+            <div class="col-sm-4 offset-sm-2 text-center" style="margin-top: 20px;">
+                <h3>{{orderResponse}}</h3>
+                <h3>Total Amount : S$ {{ total }}</h3>
+                <button type="submit" class="btn btn-primary btn-sm" style="margin-top: 20px;"
+                    ng-click="redirectToHome()">Home
+                    ?</button>
+            </div>
+            <div class="col-sm-4  text-center">
+                <h2 class="title text-center">PayNow</h2>
+                <h2 class="mainpara-18 text-center" style="line-height:32px;">UNIQE ENTITY NUMBER (UEN) : 201330716H
+                </h2>
+                <img src="/assets/images/paynowscan.jpeg" width="40%">
+            </div>
+
+        </div>
+
+        <div class="row ">
+            <div class="col-sm-12">
+                <h2 class="title text-center">Bank Detils</h2>
+            </div>
+        </div>
+
+        <div class="row" style="padding:20px 20px;text-align:center;margin-bottom:10%;">
+            <div class="col-sm-10 offset-sm-1 text-left">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th class="">BENIFICIARY BANK DETAILS (PAY TO)</th>
+                            <th></th>
+
+                        </tr>
+                    </thead>
+                    <tbody class=" mainpara-12">
+                        <tr>
+                            <td>CURRENCY</td>
+                            <td>SGD</td>
+
+                        </tr>
+                        <tr>
+                            <td>ACCOUNT NO</td>
+                            <td>003-93-48533</td>
+
+                        </tr>
+                        <tr>
+                            <td>ACCOUNT</td>
+                            <td>Fountain Technologies Pte. Ltd.</td>
+
+                        </tr>
+                        <tr>
+                            <td>BANK</td>
+                            <td>DBS Bank Singapore</td>
+
+                        </tr>
+                        <tr>
+                            <td>BANK ADDRESS</td>
+                            <td>12 Marina Boulevard</td>
+
+                        </tr>
+                        <tr>
+                            <td>SWIFT</td>
+                            <td>DBSSSGSG</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+        </div>
+    </div>
+    <!-- 
+    <div class="container text-center">
+
+        <div class="row">
+
+            <div class="col-sm-12 text-left">
+
+                <div style="text-align: center;">
+                    <h2>{{orderResponse}}</h2>
+                    <button type="submit" class="btn btn-primary btn-sm" style="margin-top: 20px;"
+                        ng-click="redirectToHome()">Home
+                        ?</button>
+                </div>
+                <p></p>
+
+            </div>
+        </div>
+
+    </div> -->
+
+    <!-- FOOTER -->
+    <footer class="footer " style="background-color:#c41a02;padding:15px 0px;color:#ffffff;">
+        <div class="container">
+            <!-- <p class="float-right"><a href="#" style="color:#ffffff;">Back to top</a></p> -->
+            <p>© 2020 FT Ltd. All rights reserved.
+        </div>
+    </footer>
+    </main>
+
+
+  <script src="/assets/js/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.10/angular.min.js"></script>
+  <script type="text/javascript" src="/assets/js/angular-storage.min.js"></script>
+  <script type="text/javascript" src="/assets/js/app.js"></script>
+  <script type="text/javascript" src="/assets/js/homeCtrl.js"></script>
+  <link href="/assets/css/stylesheetv2.css" rel="stylesheet"> 
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  
+
+
+
+
+</body>
+
+</html>

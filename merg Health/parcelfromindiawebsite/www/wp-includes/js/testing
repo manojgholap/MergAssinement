@@ -1,0 +1,100 @@
+var business_id='12';
+
+if(document.location.hostname == "parcelfromindia.com" || document.location.hostname == "www.parcelfromindia.com"){
+			var baseurl = "https://www.parcelfromindia.com/api/";
+			console.log(baseurl);
+          } else{
+			var baseurl = "http://localhost:15000/api/" ;
+          }
+$scope.data={
+				name:"",
+          		email:"",
+                  phone:"",
+                  subject:"",
+          		message:"",
+	}
+			  
+/*	$scope.friend="test to friend";  */
+
+		 angular.element(document.querySelector("#apps")).removeClass("showMsg");
+		 
+
+    	 $scope.contactUS = function (code, result) {
+			 alert("We are in the contact us form");
+    		 console.log($scope.data);
+    		 if($scope.data.name==="")
+    		 {
+				 
+//    			 angular.element(document.querySelector(".in_name")).addClass("has-error");
+    			 $scope.myForm.name.$invalid=true;
+				 $scope.myForm.name.$pristine=false;
+				/* console.log($scope.myForm.f_name.$invalid);  */
+    		 }
+    		 
+    		 if($scope.data.email==="")
+    		 {
+//    			 angular.element(document.querySelector(".in_name")).addClass("has-error");
+    			 $scope.myForm.email.$invalid=true;
+    			 $scope.myForm.email.$pristine=false;
+    		 }
+    		 if($scope.data.phone==="")
+    		 {
+//    			 angular.element(document.querySelector(".in_name")).addClass("has-error");
+    			 $scope.myForm.phone.$invalid=true;
+    			 $scope.myForm.phone.$pristine=false;
+			 }
+			 if($scope.data.subject==="")
+    		 {
+//    			
+//    			 angular.element(document.querySelector(".in_name")).addClass("has-error");
+    			 $scope.myForm.subject.$invalid=true;
+    			 $scope.myForm.subject.$pristine=false;
+    		 }
+    		 if($scope.data.message==="")
+    		 {
+//    			 angular.element(document.querySelector(".in_name")).addClass("has-error");
+    			 $scope.myForm.message.$invalid=true;
+    			 $scope.myForm.message.$pristine=false;
+    		 }
+    		 if($scope.data.name=="" && $scope.data.email=="" && $scope.data.phone=="" && $scope.data.last_name=="" && $scope.data.message=="")
+    		{
+
+    			 $scope.msg=false;
+    			 $scope.msg1=true;
+				 $scope.message1 = "Please fill required field."
+				  
+			}
+		
+    		 else 
+    	  {
+			  
+			console.log("API Call");
+    	  alert('calling the api');
+    		      if($scope.data.name!="" && $scope.data.email!="" && $scope.data.phone!=""  && $scope.data.message!="")
+    		      {
+				   $scope.data.business_id=business_id;
+				   console.log(baseurl);
+                   console.log($scope.data);
+                   $http.post("http://localhost:15000/api/contactus" ,$scope.data).success(function(res) {
+				   
+                     $scope.response = res;
+					 console.log(res);
+					    $scope.formhide=true;
+						$scope.msg1=true;
+                     	$scope.message = "Thank you for contacting us.Our Team will contact you real soon." ;
+                     	$scope.data={
+                        		name:"",
+                        		email:"",
+                        		phone:"",
+                        		subject:"",
+								message:"",
+					   	}
+                     	$scope.myForm.$setPristine();
+
+                   }).error(function() {
+                         // alert("Please check your internet connection or data source..");
+                   });
+				  }
+
+
+		  }

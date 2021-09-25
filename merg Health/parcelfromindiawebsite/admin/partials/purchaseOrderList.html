@@ -1,0 +1,112 @@
+<div>
+    <div class="page-container">
+        <header ng-include="'partials/left_menu.html'"></header>
+        <div class="main-content">
+            <header ng-include="'partials/user_menu.html'"></header>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="table_heading">Purchase Order List</h2>
+                </div>
+                <div class="form-group col-md-6" style="margin-top: 12px;">
+                    <div class="icon-addon addon-sm">
+                        <input type="text" placeholder="Search Product" class="form-control" ng-model="searchtxt"type="text">
+                    </div>
+                </div>
+                <!-- <div class="col-md-3">
+                    <div class="add_btn_container">
+                        <button type="button" class="btn btn-primary" ng-click="goto('/wts')" style="margin-right: 20px; margin-top: 15px; float:right;">Add WTS</button>
+                    </div>
+                </div> -->
+            </div>
+            <hr />
+
+            <div class="row">
+                <div class="col-sm-12" ng-init="allPurchaseOurder()">
+                    <div class="panel panel-default table-hover table-responsive">
+                        <div class="panel-heading"> </div>
+                        <table class="table table-bordered table-striped datatable" id="table-2">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>PO No.</th>
+                                    <th>Date</th>
+                                    <th>Client</th>
+                                    <th>Title</th>
+                                    <th>Amount</th>
+                                    <th>View PO</th>
+                                    <th>Status</th>
+                                    <th>Contact</th>
+                                    <!-- <th>Action</th> -->
+                                </tr>
+                            </thead>
+                            <tbody >
+                                <tr ng-repeat="wts in AllListPO |  orderBy: reverse:true | filter: searchtxt">
+                                    <td>{{wts.id}}</td>
+                                    <td>{{wts.date}}</td>
+                                    <td ng-click='viewHistory(wts.client_id)' style="cursor: pointer;">{{wts.company_name}}</td>
+                                    <td ng-click='productStock(wts.product_title,wts.product_type,wts.selling_price,wts.p_id)' style="cursor: pointer;">{{wts.product_title}}</td>
+                                    <td>${{wts.grant_amount}}</td>
+                                    <td ng-click="redirectViewPO(wts.id,wts.client_id)">
+                                        <img src="../img/purchase_order.png" alt="po" style="height:30px">
+                                    </td>
+                                    <td>
+                                        <form editable-form name="editableForm" onaftersave="updatePOStatus(wts.po_status,wts.id)">
+                                            <div>
+                                                <span editable-text="wts.po_status" e-name="po_status" onbeforesave="checkName($data)" >{{ wts.po_status || 'Add Status' }}</span>
+                                            </div>
+                                            <div class="buttons">
+                                                <i class="fa fa-pencil" aria-hidden="true" ng-click="editableForm.$show()" ng-show="!editableForm.$visible"></i>
+                                                <span ng-show="editableForm.$visible">
+                                                    <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting" style="padding:2px;margin: 2px 0px;">Save
+                                                    </button>
+                                                    <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()" style="padding:2px;">
+                                                    Cancel
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </form> 
+                                    </td>
+                                    <td><a href="https://wa.me/{{ wts.number}}" target="_blank" style="font-size:20px;color:#03ab1a;"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                                        <a href="mailto:{{wts.email}}?subject={{wts.description}}" target="_blank" style="font-size:20px;color:#0089cc;"><i class="fa fa-envelope-o" aria-hidden="true"></i></a></td>
+                                    <!-- <td>
+                                        <a class="btn btn-info btn-sm btn-icon icon-left" data-toggle="modal"
+                                            data-target="#del_po" ng-click='purchaseOrderDel(wts.id)'>
+                                            <i class="entypo-cancel"></i> Delete
+                                        </a>
+                                    </td> -->
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- <p ng-show="showdeletemsgmsg" class="success_msg">{{deletemsg}}</p> -->
+                    </div>
+                    <div style="text-align: center;font-size:25px;font-weight:600"><i ng-hide="AllListPO" class="fa fa-spinner" aria-hidden="true">
+                        Page loading...</i></div>
+                </div>
+            </div>
+            <!-- Footer -->
+        </div>
+    </div>
+
+    <div class="modal fade" id="del_po" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="margin: 225px auto;">
+            <div class="modal-content delete">
+                <div class="modal-header" style="border:none;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="img/delete.svg">
+                    <h2>Confirm Delete ?</h2>
+                    <br>
+
+                    <div>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"
+                            style="padding:7px 20px;">Cancel</button>
+                        <button type="button" class="btn btn-primary" ng-click="confirmPurchaseOrder(wts.id)"
+                            data-dismiss="modal" style="margin-left: 5px;">Delete</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

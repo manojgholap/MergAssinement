@@ -1,0 +1,58 @@
+<div >
+    <div class="page-container">
+        <header ng-include="'partials/left_menu.html'"></header>
+        <div class="main-content">
+            <header ng-include="'partials/user_menu.html'"></header>
+            <hr />
+            <div class="row"> </div>
+            <h2 class="table_heading">Edit Category</h2>
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading"> </div>
+                                <form role="form" name="editcatform" class="form-horizontal form-groups-bordered" ng-submit='editCategory(editcatform ,categorydata)' novalidate>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Title</label>
+
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control" id="field-1" name="category_name" placeholder="Enter Title" ng-model='categorydata.category_name'>
+                                              <div ng-messages="editcatform.$submitted && editcatform.category_name.$error" class="error_msg">
+                                                <div ng-message="required">select category</div>
+                                              </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="field-2" class="col-sm-3 control-label">Description</label>
+
+                                        <div class="col-sm-5">
+                                            <!-- <input type="text" class="form-control" id="field-2" placeholder="Enter Description" ng-model='categorydata.category_description' name="description" required> -->
+                                            <textarea name="name" rows="8" cols="40" class="form-control" id="field-2" placeholder="Enter Description" ng-model='categorydata.category_description' name="description" required></textarea>
+                                            <div ng-messages="editcatform.$submitted && editcatform.description.$error" class="error_msg">
+                                                <div ng-message="required">enter the description</div>
+                                              </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-3 col-sm-5">
+                                            <button type="submit" class="btn btn_back" >Edit Category</button>
+                                            <p ng-show="showupdatecatmsg" class="success_msg">{{updatecatmsg}}</p>
+                                            <p ng-show="showupdateerrcatmsg" class="error_msg">{{updateerrcatmsg}}</p>
+
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer -->
+        </div>
+
+    </div>
+
+</div>

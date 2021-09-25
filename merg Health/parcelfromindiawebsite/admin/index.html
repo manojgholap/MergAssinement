@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en" ng-app="BusinessApp">
+
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Gadgetsinasia" />
+    <meta name="description"
+        content="Gadgetsinasia is a tech-startup to help wholesale distributors, e-commerce stores and retail outlet to find the the categories and brands at great prices.">
+    <meta name="author" content="Laborator.co" />
+    <!-- bootstrap CSS file -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="topcoat/css/topcoat-mobile-light.min.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/assets/css/font-icons/entypo/css/entypo.css" id="style-resource-2">
+    <link rel="stylesheet" href="css/assets/css/neon.css" id="style-resource-4">
+    <link rel="stylesheet" href="css/assets/css/custom.css" id="style-resource-5">
+    <link rel="stylesheet" href="css/ng-tags-input.min.css" />
+
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script> -->
+    <link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
+    <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.6.3/ui-grid.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.6.3/ui-grid.min.css"
+        type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <link href="css/textAngular.css" rel="stylesheet">
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script> -->
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-messages.min.js"></script>
+    <script src="lib/angular-storage.min.js"></script>
+    <script src="lib/angular-route.min.js"></script>
+    <script src="lib/angular-touch.min.js"></script>
+    <script src="lib/angular-resource.min.js"></script>
+    <script src="lib/angular-animate.min.js"></script>
+    <script src="lib/underscore-min.js"></script>
+    <script src="lib/papaparse.min.js"></script> 
+    <!-- csv -->
+
+    <!-- <script src="lib/bootstrap.min.js"></script> -->
+    <!-- bootstrap JS files -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="lib/ng-tags-input.min.js"></script>
+    <script src='lib//textAngular-rangy.min.js'></script>
+    <script src='lib/textAngular-sanitize.min.js'></script>
+    <script src="lib/textAngular.min.js"></script>
+    <script src="lib/loadingoverlay.min.js"></script>
+    <script type="text/javascript" src="lib/ng-file-upload.min.js"></script>
+    <script type="text/javascript" src="lib/async.min.js"></script>
+    <script src="//cdn.ckeditor.com/4.5.6/standard/ckeditor.js"></script>
+    <script type="text/javascript" src="lib/ngCkeditor-v2.0.1.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/MCategoryController.js"></script>
+    <script src="js/CategoryController.js"></script>
+    <script src="js/CategoryAccController.js"></script>
+
+    <script src="js/SuperCategoryController.js"></script>
+    <script src="js/ItemController.js"></script>
+    <script src="js/businessLoginController.js"></script>
+    <script src="js/orderController.js"></script>
+    <script src="js/ordersController.js"></script>
+    <script src="js/settingController.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/StockController.js"></script>
+    <script src="js/mailController.js"></script>
+    <script src="js/inventoryController.js"></script>
+    <script src="js/userController.js"></script>
+    <script src="js/driverController.js"></script>
+    <script src="js/medicineController.js"></script>
+    
+</head>
+
+<body>
+    <div ng-view ng-class="">
+
+    </div>
+<!-- <script>
+    var getURL = window.location.href.slice(37);
+    getURL = getURL.replace(/=/g,'":"');
+    getURL = getURL.replace(/&/g,'","');
+    getURL = '{"'+ getURL+'"}' ;
+    obj = JSON.parse(getURL);
+    console.log(obj);
+</script> -->
+</body>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-137803734-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-137803734-1');
+</script>
+</html>

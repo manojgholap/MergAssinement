@@ -1,0 +1,697 @@
+<div>
+    <div class="page-container">
+        <header ng-include="'partials/left_menu.html'"></header>
+        <div class="main-content">
+            <header ng-include="'partials/user_menu.html'"></header>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="table_heading">{{clientDetails.client_name}}'s History</h2>
+                </div>
+                <div class="col-md-3">
+                    <div class="add_btn_container">
+                        <button type="button" class="btn btn-primary" ng-click="goto('/wtb-list')"
+                            style="margin-right: 150px; margin-top: 15px; float:right;">Back WTB</button>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="add_btn_container">
+                        <button type="button" class="btn btn-primary" ng-click="goto('/wts-list')"
+                            style="margin-right: 150px; margin-top: 15px;float:right;">Back WTS</button>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-12" ng-init="clientById()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="panel panel-default table-hover table-responsive">
+                                <div class="panel-heading"> </div>
+                                <form role="form" class="form-horizontal form-groups-bordered">
+                                    <div style="text-align: center;font-size:25px;font-weight:600"><i
+                                            ng-hide="clientDetails" class="fa fa-spinner" aria-hidden="true">
+                                            Page loading...</i></div>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-md-6 control-label">Business Id</label>
+                                        <div class="col-md-6">
+                                            <p for="field-1" class="control-label"
+                                                style="text-align:left;padding-left:10px;">{{clientDetails.id}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-md-6 control-label">Client Name</label>
+                                        <div class="col-md-6">
+                                            <p for="field-1" class="control-label"
+                                                style="text-align:left;padding-left:10px;">{{clientDetails.client_name}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-md-6 control-label">Business Name</label>
+                                        <div class="col-md-6">
+                                            <p for="field-1" class="control-label"
+                                                style="text-align:left;padding-left:10px;">
+                                                {{clientDetails.company_name}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-md-6 control-label">Contact Number</label>
+                                        <div class="col-md-6">
+                                            <p for="field-1" class="control-label"
+                                                style="text-align:left;padding-left:10px;">{{clientDetails.contact}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-md-6 control-label">WhatsApp Number</label>
+                                        <div class="col-md-6">
+                                            <p for="field-1" class="control-label"
+                                                style="text-align:left;padding-left:10px;">{{clientDetails.contact}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-md-6 control-label">Email</label>
+                                        <div class="col-md-6">
+                                            <p for="field-1" class="control-label"
+                                                style="text-align:left;padding-left:10px;">{{clientDetails.email}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-md-6 control-label">Points</label>
+                                        <div class="col-md-6">
+                                            <p for="field-1" class="control-label"
+                                                style="text-align:left;padding-left:10px;">
+                                                {{clientDetails.points |number:2}} USD</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-md-6 control-label">Password</label>
+                                        <div class="col-md-6">
+                                            <p for="field-1" class="control-label"
+                                                style="text-align:left;padding-left:10px;">{{clientDetails.password}}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-md-6 control-label">Country</label>
+                                        <div class="col-md-6">
+                                            <p for="field-1" class="control-label"
+                                                style="text-align:left;padding-left:10px;">{{clientDetails.country}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-md-6 control-label">Address</label>
+                                        <div class="col-md-6">
+                                            <p for="field-1" class="control-label"
+                                                style="text-align:left;padding-left:10px;">{{clientDetails.address}}</p>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-6" style="margin: 17% auto;display: block;text-align: center;">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <button type="button" class="btn btn-success btn-lg" data-toggle="modal"
+                                        data-target="#modal_wtb"
+                                        ng-click='modelAddWTB(clientDetails.id,clientDetails.company_name,clientDetails.email,clientDetails.contact)'>Add
+                                        WTB</button>
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                                        data-target="#modal_wts"
+                                        ng-click='modelAddWTS(clientDetails.id,clientDetails.company_name,clientDetails.email,clientDetails.contact)'>Add
+                                        WTS</button>
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                                        data-target="#modal_addPoints">Add
+                                        Points</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Client WTB history -->
+                <div class="col-sm-12" ng-init="CliBTWHistory()">
+                    <div class="row">
+                        <h3>{{clientDetails.client_name}}'s All Orders</h3>
+
+                        <div class="panel panel-default table-hover table-responsive">
+
+                            <table class="table table-bordered table-striped datatable" id="table-2">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Order No</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Contact Person</th>
+                                        <th>Contact Number</th>
+                                        <th>Email</th>
+                                        <th>Postal Code</th>
+                                        <th>Total Price</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="wtb in clientAllOrders |  orderBy: reverse:true">
+                                        <td>{{wtb.id}}</td>
+                                        <td>{{wtb.date}}</td>
+                                        <td>{{wtb.status}}</td>
+                                        <td>{{wtb.contactPerson }}</td>
+                                        <td> <a href="https://wa.me/{{wtb.contactNumber}}" target="_blank"
+                                                style="font-size:20px;color:#03ab1a;"><i class="fa fa-whatsapp"
+                                                    aria-hidden="true"></i> {{wtb.contactNumber}}</a></td>
+                                        <td>{{wtb.email}} </td>
+                                        <td>{{wtb.postalCode}}</td>
+                                        <td>{{wtb.totalAmount |number:2}} USD</td>
+
+                                        <!-- <td scope="row"><a href="https://wa.me/{{ wtb.client_contact}}" target="_blank"
+                                                style="font-size:20px;color:#03ab1a;"><i class="fa fa-whatsapp"
+                                                    aria-hidden="true"></i></a>&nbsp;&nbsp;
+                                            <a href="mailto:{{wtb.client_email}}?subject={{wtb.product_title}}"
+                                                target="_blank" style="font-size:20px;color:#0089cc;"><i
+                                                    class="fa fa-envelope-o" aria-hidden="true"></i></a></td> -->
+                                        <td>
+                                            <a class="btn btn-default btn-sm btn-icon icon-left"
+                                                ng-click='editInvoiceForPackingList(wtb.shipNo,wtb.resellerId);'>
+                                                <i class="entypo-pencil"></i> Edit
+                                            </a>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Clients Payment History-->
+                <div class="col-sm-12" ng-init="resellerPaymentHistory()">
+                    <div class="row">
+                        <h3>{{clientDetails.client_name}}'s Payment History</h3>
+                        <div class="panel panel-default table-hover table-responsive">
+                            <table class="table table-bordered table-striped datatable" id="table-2">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Sr No.</th>
+                                        <th>Date</th>
+                                        <th>Credit</th>
+                                        <th>Debit</th>
+                                        <th>Total Points</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="h in history |  orderBy: reverse:true">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{h.date}}</td>
+                                        <td>{{h.credit}}</td>
+                                        <td>{{h.debit}}</td>
+                                        <td><b>{{h.totalPoints |number:2}} USD</b></td>
+                                        <td>{{h.description}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12" ng-init="resellerDepositHistory()">
+                    <div class="row">
+                        <h3>{{clientDetails.client_name}}'s Deposit History</h3>
+                        <div class="panel panel-default table-hover table-responsive">
+                            <table class="table table-bordered table-striped datatable" id="table-2">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Sr No.</th>
+                                        <th>Date</th>
+                                        <th>Amount</th>
+                                        <th>Transaction Id</th>
+                                        <th>Status</th>
+                                        <th>Proof(click to view full image)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="h in depositHistory |  orderBy: reverse:true">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{h.date}}</td>
+                                        <td>{{h.amount}}</td>
+                                        <td>{{h.transactionId}}</td>
+                                        <td>{{h.status}} </td>
+                                        <td> <a href="http://api.fountaintechies.com/assets/web/111/{{h.proofImage}}"><img
+                                                    src="http://api.fountaintechies.com/assets/web/111/{{h.proofImage}}"
+                                                    style="width: 200px; height: 200px;;" alt="logo"></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Client WTS history -->
+                <!-- <div class="col-sm-12">
+                    <div class="row" >
+                        <h3>Client's WTS History</h3>
+                        <div class="panel panel-default table-hover table-responsive">
+                            <table class="table table-bordered table-striped datatable" id="table-2">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Lead No</th>
+                                        <th>Date</th>
+                                        <th>Client</th>
+                                        <th>Brand</th>
+                                        <th>Type</th>
+                                        <th>Title</th>
+                                        <th>Price</th>
+                                        <th>Qty</th>
+                                        <th>Total Price</th>
+                                        <th>Contact</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="wts in btsHistory |  orderBy: reverse:true">
+                                        <td>{{wts.id}}</td>
+                                        <td>{{wts.date}}</td>
+                                        <td>{{wts.client}}</td>
+                                        <td>{{wts.brand}}</td>
+                                        <td>{{wts.product_type}}</td>
+                                        <td>{{wts.product_title}}</td>
+                                        <td>${{wts.selling_price}}</td>
+                                        <td>{{wts.qty}}</td>
+                                        <td>${{wts.total_price}}</td>
+                                        <td scope="row"><a href="https://wa.me/{{ wts.client_contact}}" target="_blank"
+                                                style="font-size:20px;color:#03ab1a;"><i class="fa fa-whatsapp"
+                                                    aria-hidden="true"></i></a>&nbsp;&nbsp;
+                                            <a href="mailto:{{wts.client_email}}?subject={{wts.product_title}}"
+                                                target="_blank" style="font-size:20px;color:#0089cc;"><i
+                                                    class="fa fa-envelope-o" aria-hidden="true"></i></a></td>
+                                        <td>
+                                            <a class="btn btn-default btn-sm btn-icon icon-left"
+                                                ng-click='editWts(wts.id,wts.client_id);'>
+                                                <i class="entypo-pencil"></i> Edit
+                                            </a>
+                                            <a class="btn btn-danger btn-sm btn-icon icon-left" data-toggle="modal"
+                                                data-target="#del_wts" ng-click='poDel(wts.id)'>
+                                                <i class="entypo-cancel"></i> Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- delete wtb -->
+<div class="modal fade" id="del_po" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="margin: 225px auto;">
+        <div class="modal-content delete">
+            <div class="modal-header" style="border:none;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="img/delete.svg">
+                <h2>Confirm Delete ?</h2>
+                <br>
+                <div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                        style="padding:7px 20px;">Cancel</button>
+                    <button type="button" class="btn btn-primary" ng-click="confirmPoDelWTB(wtb.id)"
+                        data-dismiss="modal" style="margin-left: 5px;">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- delete wts-->
+<div class="modal fade" id="del_wts" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="margin: 225px auto;">
+        <div class="modal-content delete">
+            <div class="modal-header" style="border:none;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="img/delete.svg">
+                <h2>Confirm Delete ?</h2>
+                <br>
+                <div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                        style="padding:7px 20px;">Cancel</button>
+                    <button type="button" class="btn btn-primary" ng-click="confirmPoDel(wts.id)" data-dismiss="modal"
+                        style="margin-left: 5px;">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- add WTB -->
+<div class="modal fade" id="modal_wtb" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Want To Buy (WTB)</h2>
+            </div>
+            <div class="modal-body text-center" style="height:555px;padding: 0px;">
+                <form name="poForm" data-ng-submit="addWTBOrderByModel(poForm,product)" name="poForm" id="poForm"
+                    novalidate>
+                    <div class="form-group" ng-click="brand2()">
+                        <label for="field-1" class="col-sm-4 control-label" style="text-align:right">Brand</label>
+                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                            <select class="form-control" ng-model="product.brand"
+                                ng-change="productBrand(product.brand)"
+                                ng-options="brand1.brand as brand1.brand for brand1 in brands | orderBy:'brand' track by brand1.brand">
+                                <option value="" selected data-default>Select Product Brand</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group" ng-click="type2()">
+                        <label for="field-1" class="col-sm-4 control-label" style="text-align:right">Product
+                            Type</label>
+                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                            <select class="form-control" ng-model="product.type"
+                                ng-options="type1.product_type as type1.product_type for type1 in types | orderBy:'product_type' track by type1.product_type">
+                                <option value="" selected data-default>Select Product Type</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group" ng-click="description(product);">
+                        <label for="field-1" class="col-sm-4 control-label" style="text-align:right">Product
+                            Title</label>
+                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                            <select class="form-control" ng-model="product.description"
+                                ng-options="title1.id as title1.description for title1 in titles "
+                                ng-change="selectedItemChanged(product.description)">
+                                <option value="" selected data-default>Select Product Title</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="field-1" class="col-sm-4 control-label" style="text-align:right">EAN Number</label>
+                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                            <p type="text" class="form-control" name="ean_number" id="ean_number"
+                                ng-model='product.ean_number'>{{ean}}</p>
+                            <div ng-messages="poForm.$submitted && poForm.ean_number.$error" class="error_msg">
+                                <div ng-message="required">Enter EAN Number</div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="field-1" class="col-sm-4 control-label" style="text-align:right">Product
+                            Price</label>
+                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                            <input type="text" class="form-control" name="selling_price" id="selling_price"
+                                ng-model='product.selling_price' placeholder="{{price}}" style="margin: 0px;">
+                            <div ng-messages="poForm.$submitted && poForm.cost_price.$error" class="error_msg">
+                                <div ng-message="required">Enter Product Price</div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="field-1" class="col-sm-4 control-label" style="text-align:right">Qty</label>
+                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                            <input type="text" class="form-control" name="qty" id="qty" placeholder="Enter Qty"
+                                ng-model='product.qty'>
+                            <div ng-messages="poForm.$submitted && poForm.qty.$error" class="error_msg">
+                                <div ng-message="required">Enter Qty</div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="field-1" class="col-sm-4 control-label" style="text-align:right">Target
+                            Price</label>
+                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                            <input type="text" class="form-control" name="target_price" id="target_price"
+                                placeholder="Enter Target Price" ng-model='product.target_price'>
+                            <div ng-messages="poForm.$submitted && poForm.target_price.$error" class="error_msg">
+                                <div ng-message="required">Enter Target Price</div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="field-1" class="col-sm-4 control-label" style="text-align:right">Shipping
+                            Type</label>
+                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                            <select class="form-control" ng-model="product.shipping_type">
+                                <option value="" selected data-default disabled>Shipping Type</option>
+                                <option>EW-works</option>
+                                <option>FOV</option>
+                                <option>FOB</option>
+                                <option>CIF</option>
+                                <option>D2D</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="field-1" class="col-sm-4 control-label" style="text-align:right">Shipping
+                            Price</label>
+                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                            <input type="text" class="form-control" name="shipping_price" id="shipping_price"
+                                placeholder="Enter Shipping Price" ng-model='product.shipping_price'>
+                            <div ng-messages="poForm.$submitted && poForm.shipping_price.$error" class="error_msg">
+                                <div ng-message="required">Enter Shipping Price</div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="field-1" class="col-sm-4 control-label" style="text-align:right">Staff
+                            Member</label>
+                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                            <select class="form-control" ng-model="product.team_member">
+                                <option value="" selected data-default disabled>Staff Member</option>
+                                <option>Amol</option>
+                                <option>Manisha</option>
+                                <option>Sneha</option>
+                                <option>Jeni</option>
+                                <option>Others</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="field-1" class="col-sm-4 control-label" style="text-align:right">Delivery
+                            Location</label>
+                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                            <input type="text" class="form-control" name="warehouse" id="warehouse"
+                                placeholder="Enter Delivery Location" ng-model='product.warehouse'>
+                            <div ng-messages="poForm.$submitted && poForm.warehouse.$error" class="error_msg">
+                                <div ng-message="required">Enter Delivery Location</div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="field-1" class="col-sm-4 control-label" style="text-align:right">Status</label>
+                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                            <select class="form-control" ng-model="product.status">
+                                <option value="" selected data-default disabled>Status</option>
+                                <option>Data Collected</option>
+                                <option>Negotiation Started</option>
+                                <option>Order Placed</option>
+                                <option>Pending</option>
+                                <option>Operations</option>
+                                <option>Delivered</option>
+                                <option>Lost</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-8">
+                            <button type="submit" class="btn btn_back">Submit</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"
+                                style="padding:7px 20px;">Cancel</button>
+                            <p ng-show="showaddpromsg" class="success_msg" style="text-align: center;">
+                                {{addpromsg}}</p>
+                            <p ng-show="showaddproductsemsg" class="error_msg" style="text-align: center;">
+                                {{addproductsemsg}}</p>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- wts -->
+<div class="modal fade" id="modal_wts" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Want To Sell (WTS)</h2>
+            </div>
+            <div class="modal-body text-center" style="height:345px;padding: 0px;">
+                <form name="poForm" data-ng-submit="addWTSModel(poForm,product)" name="poForm" id="poForm" novalidate>
+                    <!-- <form role="form" name="exampleForm"  class="form-horizontal form-groups-bordered" required> -->
+                    <div class="form-group" ng-click="brand2()">
+                        <label for="field-1" class="col-sm-4 control-label">Brand</label>
+                        <div class="col-sm-8" style="padding-bottom: 10px;">
+
+                            <select class="form-control" ng-model="product.brand"
+                                ng-change="productBrand(product.brand)"
+                                ng-options="brand1.brand as brand1.brand for brand1 in brands | orderBy:'brand' track by brand1.brand">
+                                <option value="" selected data-default>Select Product Brand</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group" ng-click="type2()">
+                        <label for="field-1" class="col-sm-4 control-label">Product Type</label>
+                        <div class="col-sm-8" style="padding-bottom: 10px;">
+
+                            <select class="form-control" ng-model="product.type"
+                                ng-options="type1.product_type as type1.product_type for type1 in types | orderBy:'product_type' track by type1.product_type">
+                                <option value="" selected data-default>Select Product Type</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group" ng-click="description(product)">
+                        <label for="field-1" class="col-sm-4 control-label">Product Title</label>
+                        <div class="col-sm-8" style="padding-bottom: 10px;">
+
+                            <select class="form-control" ng-model="product.description"
+                                ng-options="title1.id as title1.description for title1 in titles"
+                                ng-change="selectedItemChanged(product.description)">
+                                <option value="" selected data-default>Select Product Title</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="field-1" class="col-sm-4 control-label">EAN Number</label>
+                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                            <input type="text" class="form-control" name="ean_number" id="ean_number"
+                                placeholder="Enter EAN Number" ng-model='product.ean_number'
+                                ng-model-options="{ allowInvalid: true }">
+                            <div ng-messages="poForm.$submitted && poForm.ean_number.$error" class="error_msg">
+                                <div ng-message="required">Enter EAN Number</div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="field-1" class="col-sm-4 control-label">Qty</label>
+                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                            <input type="text" class="form-control" name="qty" id="qty" placeholder="Enter Qty"
+                                ng-model='product.qty'>
+                            <div ng-messages="poForm.$submitted && poForm.qty.$error" class="error_msg">
+                                <div ng-message="required">Enter Qty</div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="form-group">
+                        <label for="field-1" class="col-sm-4 control-label">Selling Price</label>
+                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                            <input type="text" class="form-control" name="selling_price" id="selling_price"
+                                placeholder="Enter Selling Price" ng-model='product.selling_price'>
+                            <div ng-messages="poForm.$submitted && poForm.selling_price.$error" class="error_msg">
+                                <div ng-message="required">Enter Selling Price</div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="field-1" class="col-sm-4 control-label">Warehouse</label>
+                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                            <input type="text" class="form-control" name="warehouse" id="warehouse"
+                                placeholder="Enter Warehouse" ng-model='product.warehouse'>
+                            <div ng-messages="poForm.$submitted && poForm.warehouse.$error" class="error_msg">
+                                <div ng-message="required">Enter Warehouse</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-8">
+                            <button type="submit" class="btn btn_back">Submit</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"
+                                style="padding:7px 20px;">Cancel</button>
+                            <p ng-show="showaddpromsg" class="success_msg" style="text-align: center;">
+                                {{addpromsg}}</p>
+                            <p ng-show="showaddproductsemsg" class="error_msg" style="text-align: center;">
+                                {{addproductsemsg}}</p>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal_addPoints" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Points</h2>
+            </div>
+            <div class="modal-body text-center" style="height:250px;padding: 0px;">
+                <form data-ng-submit="addPoints(credits,clientDetails.id)" novalidate>
+                    <div class="form-group">
+                        <label for="field-1" class="col-sm-4 control-label">Type</label>
+                        <div class="col-sm-8" style="padding-bottom: 10px;">
+
+                            <select class="form-control" ng-model="credits.pointType">
+                                <option value="" selected data-default>Select Type</option>
+                                <option>Credit</option>
+                                <option>Debit</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="field-1" class="col-sm-4 control-label">Points</label>
+                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                            <input type="number" class="form-control" name="points" id="points"
+                                placeholder="Enter Points" ng-model='credits.creditPoints'>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="field-1" class="col-sm-4 control-label">Description</label>
+                        <div class="col-sm-8" style="padding-bottom: 10px;">
+                            <textarea class="form-control" id="description" rows="3"
+                                ng-model="credits.description"></textarea>
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-8">
+                            <button type="submit" class="btn btn_back">Submit</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"
+                                style="padding:7px 20px;">Cancel</button>
+                            <p ng-show="respo" class="success_msg" style="text-align: center;">
+                                {{messageRespo}}</p>
+
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+<div>
+    <div class="page-container">
+        <header ng-include="'partials/left_menu.html'"></header>
+        <div class="main-content">
+            <header ng-include="'partials/user_menu.html'"></header>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="table_heading">Edit Staff</h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="add_btn_container">
+                        <button type="button" class="btn btn-primary" ng-click="goto('/staff-list')" style="margin-right: 150px; margin-top: 15px; float:right;">Back</button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <form name="poForm" data-ng-submit="updateStaff(poForm,staffdata)"
+                            name="poForm" id="poForm" novalidate ng-init="staffById()">
+                            <div class="form-group">
+                                <label for="field-1" class="col-sm-3 control-label">Staff Name</label>
+                                <div class="col-sm-5" style="padding-bottom: 10px;">
+                                    <input type="text" class="form-control" name="staff_name" id="staff_name" placeholder="Enter Staff Name"
+                                        ng-model='staffdata.staff_name'>
+                                    <div ng-messages="poForm.$submitted && poForm.staff_name.$error" class="error_msg">
+                                        <div ng-message="required">Enter Staff Name</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="form-group">
+                                <label for="field-1" class="col-sm-3 control-label">Email</label>
+                                <div class="col-sm-5" style="padding-bottom: 10px;">
+                                    <input type="text" class="form-control" name="email" id="email"
+                                        placeholder="Enter Email" ng-model='staffdata.email'
+                                        required>
+                                    <div ng-messages="poForm.$submitted && poForm.email.$error" class="error_msg">
+                                        <div ng-message="required">Enter Email</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="field-1" class="col-sm-3 control-label">Number</label>
+                                <div class="col-sm-5" style="padding-bottom: 10px;">
+                                    <input type="text" class="form-control" name="number" id="number"
+                                        placeholder="Enter number" ng-model='staffdata.number'
+                                        required>
+                                    <div ng-messages="poForm.$submitted && poForm.number.$error" class="error_msg">
+                                        <div ng-message="required">Enter number</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-5">
+                                    <button type="submit" class="btn btn_back">Submit</button>
+                                    <p ng-show="showuppromsg" class="success_msg" style="text-align: center;">{{uppromsg}}</p>
+                                    <p ng-show="showupdateproerrmsg" class="error_msg" style="text-align: center;">{{updateproerrmsg}}</p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer -->
+        </div>
+
+    </div>
+
+</div>

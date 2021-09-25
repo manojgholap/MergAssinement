@@ -1,0 +1,187 @@
+<div class="page-container" ng-init="viewPODetails()">
+    <header ng-include="'partials/left_menu.html'"></header>
+    <div class="main-content">
+        <header ng-include="'partials/user_menu.html'"></header>
+        <hr />
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-10">
+                            <h2 class="table_heading">Purchase Order</h2>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="add_btn_container">
+                                <button type="button" class="btn btn-primary" ng-click="goto('/purchaseOrder')"
+                                style="margin-right: 20px; margin-top: 15px; float:right;">Back</button>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <div id="exportthisSection" class="row">
+            <section>
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="../img/GADGET.png" alt="logo" class="limg">
+                        </div>
+                        <div id="pOrder" class="col-md-6">
+                            <h2>Purchase Order</h2>
+                            <h4>Fountain Technologies Pte. Ltd.</h4>
+                            <p>
+                                06-48A Sim Lim Square<br>
+                                1 Rocher Canal Road <br>
+                                Singapore,188504<br>
+                                Phone: +6592408380<br>
+                                Mobile: +6592408380<br>
+                                www.gadgetsinasia.com
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-12" id="hr">
+                        <div class="row">
+                            <div class="col-md-4" id="lH">
+                                <h2>Vendor</h2>
+                                <h3><a href="#" editable-text="viewpurchaseorder[0].client_name">{{ viewpurchaseorder[0].client_name || "Empty Client Name" }}</a></h3>
+                                <span><a href="#" editable-text="viewpurchaseorder[0].company_name">{{ viewpurchaseorder[0].company_name || "Empty Company Name" }}</a></span>
+                                <p><a href="#" editable-text="viewpurchaseorder[0].address">{{ viewpurchaseorder[0].address || "Empty Address" }}</a><br>
+                                    <span><a href="#" editable-text="viewpurchaseorder[0].contact">{{viewpurchaseorder[0].contact || "Empty Number"}}</a></span><br>
+                                    <span><a href="#" editable-text="viewpurchaseorder[0].email">{{viewpurchaseorder[0].email || "Empty Email"}}</a></span><br>
+                                </p>
+                                </div>
+                            <div class="col-md-4" id="lH2">
+                                <h2>Ship To</h2>
+                                <h3>Evergo Logistics(Hong Kong) Limited</a></h3>
+                                <p>Flat E & F, 11/F, Wah Lik Industrial Centre, 459-469 Castle Peak Road, Tsuen Wan, N.T<br>
+                                    <span>+6592408380</span><br>
+                                    <span>sales@fountaintechies.com</span><br>
+                                </p>
+                            </div>
+                            <div class="col-md-4" id="payment" ng-init="viewPOgrandprice()">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <span class="p_head">PO Number</span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span>{{viewpurchaseorder[0].po_number}}</span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span class="p_head">Date</span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span>{{viewpurchaseorder[0].date}}</span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span class="p_head">Payment Due:</span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span>{{viewpurchaseorder[0].date}}</span>
+                                    </div>
+                                    <div class="col-md-6" id="acolor">
+                                        <span class="p_head">Amount Due(USD):</span>
+                                    </div>
+                                    <div class="col-md-6" id="acolor">
+                                    <span>{{viewPOPrice[0].grandprice}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" id="pHr" ng-init="AllPOData()">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="panel panel-default table-hover table-responsive">
+                                    <table class="table table-bordered table-striped datatable" id="table-2">
+                                        <thead id="tc" class="thead-light">
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Items</th>
+                                                <th>Color</th>
+                                                <th>Quantity</th>
+                                                <th>Price</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat='data in viewpurchaseorder'>
+                                                <td>{{$index+1}}</td>
+                                                <td>{{data.p_title}}</td>
+                                                <td>{{data.po_color}}</td>
+                                                <td>{{data.po_qty}}</td>
+                                                <td>{{data.po_p_price}}</td>
+                                                <td>{{data.po_total_price}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-10 tRight">
+                            <span>Total</span>
+                        </div>
+                        <div class="col-md-2 fs">
+                            <span>{{viewPOPrice[0].grandprice}}</span>
+                        </div>
+                        <div class="col-md-10 tRight">
+                            <span>Advance</span>
+                        </div>
+                        <div class="col-md-2 fs">
+                            <!-- <form editable-form name="editableForm" onaftersave="advancePOPrice(btsHistory.product_title,viewpurchaseorder[0].id,btsHistory.advance_price)">
+                                <div>
+                                    <span ng-click="editableForm.$show()" ng-show="!editableForm.$visible" editable-text="btsHistory.advance_price" e-name="advance_price" onbeforesave="checkName($data)" >{{ btsHistory.advance_price || 'Empty' }}</span>
+                                </div>
+                                <div class="buttons">
+                                    <span ng-show="editableForm.$visible">
+                                        <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting" style="padding:2px;margin: 2px 0px;">Save
+                                        </button>
+                                        <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()" style="padding:2px;">
+                                        Cancel
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>  -->
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-8 sp">
+                                <h4>Special Instruction:</h4>
+                                <a href="#" editable-text="paymentdiscount.discount" id="spc">{{ paymentdiscount.discount || "Empty"}}</a>
+                            </div>
+                            <div class="col-md-2 ta">
+                                <span>Amount Due(USD):</span>
+                            </div>
+                            <div class="col-md-2 ta2">
+                                <span>{{viewPOPrice[0].grandprice}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-6 spn">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-8">
+                                <img src="../img/SIGN.png" alt="stemp" style="float:right;margin-right: -141px;z-index: 999;position: inherit;">
+                            </div>
+                            <div class="col-md-4">
+                                <img src="../img/stamp.png" alt="stemp" style="width: 100%;z-index: 11;padding-top: 39px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="col-md-12 bp">
+                <button type="button" class="btn btn-primary" ng-click="poExport()">Print</button>
+                <p ng-show="showupdatemsg" class="success_msg" style="text-align: center;">
+                    {{updatemsg}}</p>
+                <p ng-show="showerrmsg" class="error_msg"
+                    style="text-align: center;">{{errmsg}}</p>
+            </div>
+        </div>
+        <!-- <div style="text-align: center;font-size:25px;font-weight:600"><i ng-hide="wtbLists" class="fa fa-spinner" aria-hidden="true">
+                Page loading...</i></div> -->
+        <!-- Footer -->
+    </div>
+</div>

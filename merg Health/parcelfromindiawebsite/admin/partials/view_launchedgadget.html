@@ -1,0 +1,91 @@
+<div>
+    <div class="page-container">
+        <header ng-include="'partials/left_menu.html'"></header>
+        <div class="main-content">
+            <header ng-include="'partials/user_menu.html'"></header>
+            <hr />
+            <div class="row"> </div>
+            <h2 class="table_heading">Item Details</h2>
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading"> </div>
+                             <div>
+                                <form role="form" class="form-horizontal form-groups-bordered">
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Item Name</label>
+                                         <div class="col-sm-5">
+                                            <p for="field-1" class="control-label" style="text-align:left;padding-left:20px;">{{gadget.name}}</p>                                       
+                                        </div>
+                                       
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="field-2" class="col-sm-3 control-label">Description</label>
+                                        <div class="col-sm-5">
+                                            <p for="field-1" class="control-label" style="text-align:left;padding-left:20px;">{{gadget.description}}</p>                                       
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Item Price</label>
+                                         <div class="col-sm-5">
+                                            <p for="field-1" class="control-label" style="text-align:left;padding-left:20px;">${{gadget.price}}</p>                                       
+                                        </div>
+                                       
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Submitted By</label>
+                                         <div class="col-sm-5">
+                                            <p for="field-1" class="control-label" style="text-align:left;padding-left:20px;">{{gadget.business_name}}</p>                                       
+                                        </div>
+                                       
+                                    </div>
+                                                                                                                                                                               
+                                    <div class="form-group">
+                                        <label for="field-1" class="col-sm-3 control-label">Detailed Description</label>
+                                        <div class="col-sm-5">
+                                            <ng-ckeditor
+                                            	ng-model="gadget.detailed_description"
+                                            	ng-disabled="editorDIsabled"
+                                            	skin="moono"
+                                            	remove-plugins="iframe,flash,smiley">
+                                            </ng-ckeditor>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group" ng-if="gadget.image">
+                                        <label for="field-2" class="col-sm-3 control-label">Item Image</label>
+                                        <div class="col-sm-5">
+                                            <!-- <input type="text" class="form-control" id="field-2" placeholder="Enter Description" ng-model='gadget.image' readonly="true"> -->
+                                            <img ng-src="{{imageURL}}/{{gadget.image}}" style="max-width: 100%;width: 330px;padding-left: 51px;">
+                                        </div>
+                                    </div>
+                                    
+                                                                                        
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-3 col-sm-5">
+                                            <button ng-click="goto('launchedgadgets')" type="button" class="btn btn_back">Back</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                        
+                        </div>
+                                                                        
+                    </div>
+                </div>
+                
+                
+            </div>
+            <!-- Footer -->
+        </div>
+
+    </div>
+
+</div>

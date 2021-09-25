@@ -1,0 +1,57 @@
+    <div class="page-container" ng-init="viewInvoiceDetails()">
+        <header ng-include="'partials/left_menu.html'"></header>
+        <div class="main-content">
+            <header ng-include="'partials/user_menu.html'"></header>
+            <hr />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-10">
+                        <h2 class="table_heading">Outgoing Product List</h2>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="add_btn_container">
+                            <button type="button" class="btn btn-primary" ng-click="goto('/Outgoing-Shipping')"
+                            style="margin-right: 20px; margin-top: 15px; float:right;">Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div id="exportthis" class="row">
+                <div class="col-md-12" id="pHr">
+                    <div class="panel panel-default table-hover table-responsive">
+                        <table class="table table-bordered table-striped datatable" id="table-2">
+                            <thead id="tc" class="thead-light">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Items</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat='data in viewInv'>
+                                    <td>{{$index+1}}</td>
+                                    <td>{{data.p_title}}</td>
+                                    <td>{{data.inv_qty}}</td>
+                                    <td>{{data.inv_price}}</td>
+                                    <td>{{data.inv_total_price}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-12" ng-init="viewInvoicegrandprice()">
+                    <div class="col-md-10 tRight">
+                        <span>Grand Total(USD):</span>
+                    </div>
+                    <div class="col-md-2 fs">
+                        <span>{{viewInvPrice[0].grandprice}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    

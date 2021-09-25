@@ -1,0 +1,79 @@
+<div>
+    <div class="page-container">
+        <header ng-include="'partials/left_menu.html'"></header>
+        <div class="main-content">
+            <header ng-include="'partials/user_menu.html'"></header>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="table_heading">Add Staff</h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="add_btn_container">
+                        <button type="button" class="btn btn-primary" ng-click="goto('/staff-list')"
+                            style="margin-right: 150px; margin-top: 15px; float:right;">Back</button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <form name="poForm" data-ng-submit="addStaff(poForm,staff)" name="poForm"
+                            id="poForm" novalidate>
+                            <div class="form-group">
+                                <label for="field-1" class="col-sm-3 control-label">Name of Staff Member</label>
+                                <div class="col-sm-5" style="padding-bottom: 10px;">
+                                    <input type="text" class="form-control" name="staff_name" id="staff_name"
+                                        placeholder="Enter Name of Staff Member" ng-model='staff.staff_name'
+                                        ng-model-options="{ allowInvalid: true }">
+                                    <div ng-messages="poForm.$submitted && poForm.staff_name.$error"
+                                        class="error_msg">
+                                        <div ng-message="required">Enter Name of Staff Member</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="field-1" class="col-sm-3 control-label">Email</label>
+                                <div class="col-sm-5" style="padding-bottom: 10px;">
+                                    <input type="text" class="form-control" name="email" id="email"
+                                        placeholder="Enter Email" ng-model='staff.email'>
+                                    <div ng-messages="poForm.$submitted && poForm.email.$error" class="error_msg">
+                                        <div ng-message="required">Enter Email</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="field-1" class="col-sm-3 control-label">Number</label>
+                                <div class="col-sm-5" style="padding-bottom: 10px;">
+                                    <input type="text" class="form-control" name="number"
+                                        id="number" placeholder="Enter Number"
+                                        ng-model='staff.number'>
+                                    <div ng-messages="poForm.$submitted && poForm.number.$error"
+                                        class="error_msg">
+                                        <div ng-message="required">Enter Number</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-5">
+                                    <button type="submit" class="btn btn_back">Submit</button>
+                                    <p ng-show="showaddpromsg" class="success_msg" style="text-align: center;">
+                                        {{addpromsg}}</p>
+                                    <p ng-show="showaddstaffsemsg" class="error_msg"
+                                        style="text-align: center;">{{addstaffsemsg}}</p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer -->
+        </div>
+
+    </div>
+
+</div>

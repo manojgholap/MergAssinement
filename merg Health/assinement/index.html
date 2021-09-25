@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.2/xlsx.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/directive.js"></script>
+</head>
+<body>
+    <div ng-controller="uploadController">
+        <div class="container">
+            <div class="card">
+                <div class="card-header"><b>Select  File</b></div>
+                <div class="card-body">
+                    <input type="file" id="excel_file" />
+                </div>
+            </div>
+            <br>
+           
+            <div class="mt-5" ng-init="getData()">
+               <div>
+                <nav>
+                    <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" ng-model="value"
+                    ng-change="search()" >
+                     </form>
+                    </nav> 
+                </div>
+                <br>
+                
+                <table class="table table-bordered"> 
+                    <thead>
+                        <th scope="col">c_name</th>
+                        <th scope="col">c_batch_no</th>
+                        <th scope="col">d_expiry_date</th>
+                        <th scope="col">n_balance_qty</th>
+                        <th scope="col">c_packaging</th>
+                        <th scope="col">c_unique_code</th>
+                        <th scope="col">n_mrp</th>
+                        <th scope="col">c_manufacturer</th>
+                        <th scope="col">hsn_code</th>
+                        <th scope="col">action</th>
+                    </thead>
+                    <tbody ng-repeat="data in resdata">
+                        <td>{{data.c_name}}</td>
+                        <td>{{data.c_batch_no}}</td>
+                        <td>{{data.d_expiry_date}}</td>
+                        <td>{{data.n_balance_qty}}</td>
+                        <td>{{data.c_packaging}}</td>
+                        <td>{{data.c_unique_code}}</td>
+                        <td>{{data.n_mrp}}</td>
+                        <td>{{data.c_manufacturer}}</td>
+                        <td>{{data.hsn_code}}</td>
+                        <td>
+                            <button class="btn-btn-success" ng-click="delete(data._id)">delete</button>
+                        </td>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</div> 
+</body>
+</html>

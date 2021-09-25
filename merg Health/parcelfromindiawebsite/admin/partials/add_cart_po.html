@@ -1,0 +1,117 @@
+<div>
+    <div class="page-container">
+        <header ng-include="'partials/left_menu.html'"></header>
+        <div class="main-content">
+            <header ng-include="'partials/user_menu.html'"></header>
+            <hr />
+            <div class="row"> 
+                <div class="col-md-6">
+                    <h2 class="table_heading">Add Product to Cart For Generate PO</h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="add_btn_container">
+                        <button type="button" class="btn btn-primary" ng-click="goto('/stock-product')"
+                            style="margin-right: 150px; margin-top: 15px; float:right;">Back</button>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-12" ng-init="clientBTWHistory()">
+                    <div class="row" ng-init="clientProductGrandPrice()">
+                        <div class="col-md-12">
+                            <h3> <span style="color: blue">{{btsHistory[0].client}}</span>'s WTS Products History</h3>
+                            <h3 style="float:right">Grand Price: ${{grandPriceWTS[0].grandprice}}&nbsp;&nbsp;</h3>
+                             <div class="panel panel-default table-hover table-responsive">
+                                <div class="panel-heading"> </div>
+                                <table class="table table-bordered table-striped datatable" id="table-2">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Brand</th>
+                                            <th>Type</th>
+                                            <th>Title</th>
+                                            <th>Color</th>
+                                            <th>Price</th>
+                                            <th>Qty</th>
+                                            <th>Total Price</th>
+                                            <th>Add To Cart</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="wtb in btsHistory |  orderBy: reverse:true">
+                                            <td>{{wtb.brand}}</td>
+                                            <td>{{wtb.product_type}}</td>
+                                            <td>{{wtb.product_title}}</td>
+                                            <td>{{wtb.color}}</td>
+                                            <td>${{wtb.selling_price}}</td>
+                                            <!-- <td>{{wtb.qty}}</td> -->
+                                            <!-- <td>{{item.qty}}</td> -->
+                                            <td>
+                                                <form editable-form name="editableForm" onaftersave="updateWTSQuantity(wtb.id,wtb.qty,wtb.selling_price)">
+                                                    <div>
+                                                      <span editable-text="wtb.qty" e-name="qty" onbeforesave="checkName($data)" >{{ wtb.qty || 'Empty' }}</span>
+                                                    </div>
+                                                    <div class="buttons">
+                                                        <i class="fa fa-pencil" aria-hidden="true" ng-click="editableForm.$show(wtb.qty)" ng-show="!editableForm.$visible"></i>
+                                                        <span ng-show="editableForm.$visible">
+                                                            <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting" style="padding:2px;margin: 2px 0px;">Save
+                                                            </button>
+                                                            <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()" style="padding:2px;">
+                                                            Cancel
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                            <td>${{wtb.total_price}}</td>
+                                            <td>
+                                                <button class="btn-success" ng-click="addItem(wtb.id,wtb.date,wtb.p_id,wtb.brand,wtb.product_type,wtb.product_title,wtb.color,wtb.selling_price,wtb.qty,wtb.total_price)" style="margin: 0px;">Add to Cart</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12" style="margin-top: 40px;">
+                    <div class="row">
+                        <h2 style="text-align:center">Purchase Order:</h2>
+                         <div class="panel panel-default table-hover table-responsive">
+                                <div class="panel-heading"> </div>
+                                <table class="table table-bordered table-striped datatable" id="table-2">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Type</th>
+                                            <th>Title</th>
+                                            <th>Color</th>
+                                            <th>Price</th>
+                                            <th>Qty</th>
+                                            <th>Total Price</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in cart |  orderBy: reverse:true">
+                                            <td>{{item.product_type}}</td>
+                                            <td>{{item.product_title}}</td>
+                                            <td>{{item.color}}</td>
+                                            <td>${{item.selling_price}}</td>
+                                            <td>{{item.qty}}</td>
+                                            <td>${{item.total_price}}</td>
+                                            <td>
+                                                <button class="btn-danger btn-xs" ng-click="removeItemWTS(item.id)">Remove Item</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <button class="btn-default" ng-click="viewPO();">Generate PO</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,48 @@
+<div>
+    <div class="page-container">
+        <header ng-include="'partials/left_menu.html'"></header>
+        <div class="main-content">
+            <header ng-include="'partials/user_menu.html'"></header>
+            <hr />
+
+            <h2 class="table_heading">Mail to clintes</h2>
+            <br>
+            <form ng-submit="mailClients(value)">
+
+                <div class="form-group" ng-init="tags()">
+                    <label for="tag">Select Tags</label>
+                    <div>
+                        <select class="form-control" ng-model="value.tag" ng-options="tag.tag as tag.tag for tag in allTags "
+                            id="tag" >
+                            <option value="">Select Tags</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="sub">Subject</label>
+                    <input type="text" class="form-control" id="sub" ng-model="value.sub" placeholder="Enter Subject">
+
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="msz">Message</label>
+                    <text-angular  class="textAngular newseditor" id="msz" ng-model="value.msz" ></text-angular>
+                    <!-- <textarea class="textAngular newseditor form-control" ng-model="value.msz" id="msz"></textarea> -->
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button ng-click="goto('stockList')" class="btn btn-primary">Back</button>
+                <div class="form-group">
+                    <p>{{message}}</p>
+
+                </div>
+
+            </form>
+            <!-- Footer -->
+        </div>
+    </div>
+</div>
+
+
+</div>

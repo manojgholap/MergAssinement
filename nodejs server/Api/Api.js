@@ -81,3 +81,51 @@ exports.upload=(req,res)=>{
         }
     })
 }
+exports.updateStatus = (req, res) => {
+    var data = req.body;
+    var id = data._id;
+    healthdatas.updateOne({ _id:new mongodb.ObjectId(id) }, {
+            $set: {
+                c_name: req.body.c_name,
+                c_batch_no: req.body.c_batch_no,
+                d_expiry_date: req.body.d_expiry_date,
+                n_balance_qty: req.body.n_balance_qty,
+                c_packaging: req.body.c_packaging,
+                c_unique_code: req.body.c_unique_code,
+                n_mrp: req.body.n_mrp,
+                c_manufacturer: req.body.c_manufacturer,
+                hsn_code: req.body.hsn_code,
+            }
+        }, ( function (err, result) {
+
+            if (err) {
+                resdata = {
+                    status: false,
+                    message: "unable to update",
+                    data: err
+                }
+              res.send(resdata)
+            }
+                else {
+                    if(result.modifiedCount > 0)
+                    {
+                    resdata = {
+                        status: true,
+                        message:"updated",
+                        data: result
+                    }
+                    res.send(resdata)
+                }
+                    else{
+                        resdata = {
+                            status: false,
+                            message: "unable to update",
+                            data: err
+                        }
+                      res.send(resdata)
+                    }
+                }
+        })
+        )
+}
+

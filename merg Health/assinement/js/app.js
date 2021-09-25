@@ -5,8 +5,21 @@ $scope.value='';
 $scope.getData=()=>{
         $http.get("http://localhost:8100/getdata").then((res)=>{
                         $scope.resdata=res.data.data;
-                        console.log($scope.resdata);
         })
+}
+$scope.updatelist=(data)=>{
+        
+    $http.post("http://localhost:8100/updateStatus",data).then((res)=>
+    {
+       let resp=res.data
+       if(resp.status==true){
+           window.alert(resp.message);
+       }
+       else
+       {
+           window.alert('unable to update');
+       }
+    })
 }
 $scope.delete=(id)=>{
             let wn=window.confirm("are u sure want to delete");
@@ -47,7 +60,6 @@ excel_file.addEventListener('change', (event) => {
     {
         document.getElementById('excel_data').innerHTML = '<div class="alert alert-danger">Only .xlsx or .xls file format are allowed</div>';
         excel_file.value = '';
-
         return false;
     }
 
@@ -67,12 +79,9 @@ excel_file.addEventListener('change', (event) => {
 
         if(sheet_data.length > 0)
         {
-            var table_output = '<table class="table table-striped table-bordered">';
-
+        
             for(var row = 0; row < sheet_data.length; row++)
             {
-
-                table_output += '<tr>';
 
                 for(var cell = 0; cell < sheet_data[row].length; cell++)
                 {
@@ -97,31 +106,16 @@ excel_file.addEventListener('change', (event) => {
                         hsn_code:data[9]
                         }
                         $http.post("http://localhost:8100/upload",apidata).then((res)=>{
-                               $scope.res=res;
+                               $scope.res=res.data; 
                         })
                     };
 
                 }
             }
         } 
-
+        console.log($scope.res);
     }
 
 });
-//         let dataObj=[];
-//         $scope.upload=()=>{
 
-//                 let reader=new FileReader();
-//                 let input=file;
-//                 reader.readAsArrayBuffer(input.files[0]);
-//                 reader.onload=()=>{
-//                         var filedata=reader.result;
-//                         let book=XLSX.read(filedata,{type:"array"});
-
-//                 }   
-//         //    var file = $scope.file
-//         //    $http.post("http://localhost:8100/upload").then((res)=>{
-//         //            console.log(res);
-//         //    })
-//         }
 })

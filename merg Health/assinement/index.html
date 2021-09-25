@@ -50,15 +50,78 @@
                         <th scope="col">action</th>
                     </thead>
                     <tbody ng-repeat="data in resdata">
-                        <td>{{data.c_name}}</td>
-                        <td>{{data.c_batch_no}}</td>
-                        <td>{{data.d_expiry_date}}</td>
-                        <td>{{data.n_balance_qty}}</td>
-                        <td>{{data.c_packaging}}</td>
-                        <td>{{data.c_unique_code}}</td>
-                        <td>{{data.n_mrp}}</td>
-                        <td>{{data.c_manufacturer}}</td>
-                        <td>{{data.hsn_code}}</td>
+                        <td ng-click="$event.stopPropagation();">
+                            <form editable-form name="editableForm">
+                                <input editable-text="data.c_name"
+                                    ng-change="updatelist(data)" e-name="c_name"
+                                    class="form-control"
+                                    ng-model="data.c_name" name="c_name" style="width: 130px;">
+                            </form>
+                        </td>                        
+                        <td ng-click="$event.stopPropagation();">
+                            <form editable-form name="editableForm">
+                                <input editable-text="data.c_batch_no"
+                                    ng-change="updatelist(data)" e-name="c_batch_no"
+                                    class="form-control"
+                                    ng-model="data.c_batch_no" name="c_batch_no" style="width: 130px;">
+                            </form>
+                        </td> 
+                        <td ng-click="$event.stopPropagation();">
+                            <form editable-form name="editableForm">
+                                <input editable-text="data.d_expiry_date"
+                                    ng-change="updatelist(data)" e-name="d_expiry_date"
+                                    class="form-control"
+                                    ng-model="data.d_expiry_date" name="d_expiry_date" style="width: 130px;">
+                            </form>
+                        </td> 
+                        <td ng-click="$event.stopPropagation();">
+                            <form editable-form name="editableForm">
+                                <input editable-text="data.n_balance_qty"
+                                    ng-change="updatelist(data)" e-name="n_balance_qty"
+                                    class="form-control"
+                                    ng-model="data.n_balance_qty" name="n_balance_qty" style="width: 130px;">
+                            </form>
+                        </td>
+                        <td ng-click="$event.stopPropagation();">
+                            <form editable-form name="editableForm">
+                                <input editable-text="data.c_packaging"
+                                    ng-change="updatelist(data)" e-name="c_packaging"
+                                    class="form-control"
+                                    ng-model="data.c_packaging" name="c_packaging" style="width: 130px;">
+                            </form>
+                        </td>
+                        <td ng-click="$event.stopPropagation();">
+                            <form editable-form name="editableForm">
+                                <input editable-text="data.c_unique_code"
+                                    ng-change="updatelist(data)" e-name="c_unique_code"
+                                    class="form-control"
+                                    ng-model="data.c_unique_code" name="c_unique_code" style="width: 130px;">
+                            </form>
+                        </td>
+                        <td ng-click="$event.stopPropagation();">
+                            <form editable-form name="editableForm">
+                                <input editable-text="data.n_mrp"
+                                    ng-change="updatelist(data)" e-name="n_mrp"
+                                    class="form-control"
+                                    ng-model="data.n_mrp" name="n_mrp" style="width: 130px;">
+                            </form>
+                        </td>
+                        <td ng-click="$event.stopPropagation();">
+                            <form editable-form name="editableForm">
+                                <input editable-text="data.c_manufacturer"
+                                    ng-change="updatelist(data)" e-name="c_manufacturer"
+                                    class="form-control"
+                                    ng-model="data.c_manufacturer" name="c_manufacturer" style="width: 130px;">
+                            </form>
+                        </td>
+                        <td ng-click="$event.stopPropagation();">
+                            <form editable-form name="editableForm">
+                                <input editable-text="data.hsn_code"
+                                    ng-change="updatelist(data)" e-name="hsn_code"
+                                    class="form-control"
+                                    ng-model="data.hsn_code" name="hsn_code" style="width: 130px;">
+                            </form>
+                        </td>
                         <td>
                             <button class="btn-btn-success" ng-click="delete(data._id)">delete</button>
                         </td>

@@ -49,5 +49,6 @@ app.use(
 app.post('/upload',api.upload);
 app.get('/getdata',api.getdata);
 app.post('/deletedata',api.deletedata);
+app.post('/updateStatus',api.updateStatus)
 app.listen(8100);
 console.log('server is started at port 8100');

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="https://rawcdn.githack.com/kousik19/foto.js/d604b02c69b6f037875bc4a3050b85d776dc4659/foto.js"></script> -->
+    <script src="./js/foto.js"></script>
+    <script src="./js/edit.js"></script>
+    </Script>
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.2/xlsx.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/directive.js"></script>
+    <script src="./js/painterro-1.2.66.min.js"></script>
+    <script src='https://unpkg.com/tesseract.js@v2.1.0/dist/tesseract.min.js'></script>
+    
+</head>
+
+<body>
+    <script src="client.js"></script>
+    <div ng-controller="uploadController">
+        <div class="container" style="text-align: center;">
+            <div class="card">
+                <div class="card-header"><b>Select File</b>
+                <!-- <a href="../templates/ocr.html">OCR</a> -->
+                </div>
+                <div class="card-body buttons-section">
+                    <form enctype="multipart/form-data">
+                        <input type="file" id="foto-file" style="display:none;">
+                        <button class="btn btn-success" ng-click="editor()">Select Image</button>
+                    </form>
+                    <br>
+                    <!-- <div style="text-align:center;margin-left:27%;">
+                        <table class="buttons-table" style="margin-left: 50 px;">
+                            <tbody>
+                                <td>
+                                    <button class="operation-btn btn btn-secondary"
+                                        onclick="grayScale()">Grayscale</button>&nbsp;
+                                </td>
+                                <td>
+                                    <button class="operation-btn btn btn-secondary"
+                                        onclick="makeBright()">Bright</button>&nbsp;
+                                </td>
+                                <td>
+                                    <button class="operation-btn btn btn-secondary"
+                                        onclick="makeDark()">Dark</button>&nbsp;
+                                </td>
+                                <td>
+                                    <button class="operation-btn btn btn-secondary"
+                                        onclick="makeTransparent()">Transparent</button>&nbsp;
+                                </td>
+                                <td>
+                                    <button class="operation-btn btn btn-secondary" onclick="Blur()">Blur</button>&nbsp;
+                                </td>
+                                <td>
+                                    <button class="operation-btn btn btn-secondary"
+                                        onclick="applySharpFilter()">Sharp</button>&nbsp;
+                                </td>
+                                <td>
+                                    <button class="operation-btn btn btn-secondary"
+                                        onclick="applyFilter()">Filter</button>&nbsp;
+                                </td>
+                            </tbody>
+                        </table>
+                    </div> -->
+                    <br>
+                    <img id="foto-image" style="border-style: none; 
+               max-width:400px;
+               max-height:400px;
+               border-radius:5%;
+               display: block;
+               width: auto;
+               height: auto;
+               margin: 0 auto;">
+                    <br>
+                    <!-- <div style="text-align:center;margin-left:40%;">
+                        <table>
+                            <tbody>
+                                <td>
+                                    <button class="operation-btn btn btn-danger"
+                                       onclick="Export()">Download</button>&nbsp;
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary" ng-click="uploadFile()">Upload</button>&nbsp;
+                                </td>
+
+                            </tbody>
+                        </table>
+                    </div> -->
+                </div>
+
+                <!-- <div class="buttons-section"> -->
+
+                <!-- </div> -->
+            </div>
+            <!-- <button class="btn btn-primary" onclick="grayscale()">Grayscale</button> -->
+
+            <!-- <div ng-init="getImageData()">
+                <div ng-repeat="data in resImagedata"> -->
+            <!-- <table> -->
+
+            <!-- <tbody ng-repeat="data in resImagedata" > -->
+            <!-- <td> -->
+            <!-- <a href="http://localhost:8100/uploads/{{data.fileName}}"
+                        target="_blank"> -->
+            <!-- <img style="border-style: none; 
+                    max-width:100px;
+                    max-height:100px;
+                    border-radius: 10%;
+                    display: block;
+                    width: auto;
+                    height: auto;
+                    margin: 0 auto;" src="http://localhost:8100/uploads/{{data.fileName}}"
+                    data-toggle="modal" data-target="#exampleModal"
+                    > -->
+            <!-- </a> -->
+            <!-- <br>
+            <br>  
+        </div> -->
+            <!-- </td> -->
+
+            <!-- </tbody> -->
+            <!-- </table> -->
+            <!-- </div> -->
+
+            <!-- <div class="mt-5" ng-init="getData()">
+               <div>
+                <nav>
+                    <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" ng-model="value"
+                    ng-change="search()" >
+                     </form>
+                    </nav> 
+                </div>
+                <br> -->
+            <!--                 
+                <table class="table table-bordered"> 
+                    <thead>
+                        <th scope="col">c_name</th>
+                        <th scope="col">c_batch_no</th>
+                        <th scope="col">d_expiry_date</th>
+                        <th scope="col">n_balance_qty</th>
+                        <th scope="col">c_packaging</th>
+                        <th scope="col">c_unique_code</th>
+                        <th scope="col">n_mrp</th>
+                        <th scope="col">c_manufacturer</th>
+                        <th scope="col">hsn_code</th>
+                        <th scope="col">action</th>
+                    </thead>
+                    <tbody ng-repeat="data in resdata">
+                        <td ng-click="$event.stopPropagation();">
+                            <form editable-form name="editableForm">
+                                <input editable-text="data.c_name"
+                                    ng-change="updatelist(data)" e-name="c_name"
+                                    class="form-control"
+                                    ng-model="data.c_name" name="c_name" style="width: 130px;">
+                            </form>
+                        </td>                        
+                        <td ng-click="$event.stopPropagation();">
+                            <form editable-form name="editableForm">
+                                <input editable-text="data.c_batch_no"
+                                    ng-change="updatelist(data)" e-name="c_batch_no"
+                                    class="form-control"
+                                    ng-model="data.c_batch_no" name="c_batch_no" style="width: 130px;">
+                            </form>
+                        </td> 
+                        <td ng-click="$event.stopPropagation();">
+                            <form editable-form name="editableForm">
+                                <input editable-text="data.d_expiry_date"
+                                    ng-change="updatelist(data)" e-name="d_expiry_date"
+                                    class="form-control"
+                                    ng-model="data.d_expiry_date" name="d_expiry_date" style="width: 130px;">
+                            </form>
+                        </td> 
+                        <td ng-click="$event.stopPropagation();">
+                            <form editable-form name="editableForm">
+                                <input editable-text="data.n_balance_qty"
+                                    ng-change="updatelist(data)" e-name="n_balance_qty"
+                                    class="form-control"
+                                    ng-model="data.n_balance_qty" name="n_balance_qty" style="width: 130px;">
+                            </form>
+                        </td>
+                        <td ng-click="$event.stopPropagation();">
+                            <form editable-form name="editableForm">
+                                <input editable-text="data.c_packaging"
+                                    ng-change="updatelist(data)" e-name="c_packaging"
+                                    class="form-control"
+                                    ng-model="data.c_packaging" name="c_packaging" style="width: 130px;">
+                            </form>
+                        </td>
+                        <td ng-click="$event.stopPropagation();">
+                            <form editable-form name="editableForm">
+                                <input editable-text="data.c_unique_code"
+                                    ng-change="updatelist(data)" e-name="c_unique_code"
+                                    class="form-control"
+                                    ng-model="data.c_unique_code" name="c_unique_code" style="width: 130px;">
+                            </form>
+                        </td>
+                        <td ng-click="$event.stopPropagation();">
+                            <form editable-form name="editableForm">
+                                <input editable-text="data.n_mrp"
+                                    ng-change="updatelist(data)" e-name="n_mrp"
+                                    class="form-control"
+                                    ng-model="data.n_mrp" name="n_mrp" style="width: 130px;">
+                            </form>
+                        </td>
+                        <td ng-click="$event.stopPropagation();">
+                            <form editable-form name="editableForm">
+                                <input editable-text="data.c_manufacturer"
+                                    ng-change="updatelist(data)" e-name="c_manufacturer"
+                                    class="form-control"
+                                    ng-model="data.c_manufacturer" name="c_manufacturer" style="width: 130px;">
+                            </form>
+                        </td>
+                        <td ng-click="$event.stopPropagation();">
+                            <form editable-form name="editableForm">
+                                <input editable-text="data.hsn_code"
+                                    ng-change="updatelist(data)" e-name="hsn_code"
+                                    class="form-control"
+                                    ng-model="data.hsn_code" name="hsn_code" style="width: 130px;">
+                            </form>
+                        </td>
+                        <td>
+                            <button class="btn-btn-success" ng-click="delete(data._id)">delete</button>
+                        </td>
+                    </tbody>
+                </table> -->
+        </div>
+        <h1>{{convertedtext}}</h1>
+        <br>
+        <div class="container" style="text-align: center;">
+            <div class="card">
+                <div class="card-header"><b>Uploaded Images</b></div>
+                <div class="card-body" ng-init="getImageData()">
+                    <table >
+                        <thead>
+                            <th>
+                                Images
+                            </th>
+                            <!-- <th>
+                                Action
+                            </th> -->
+                        </thead>
+                        <tr ng-repeat="data in resImagedata">
+                            <td>
+                                <!-- <a href="http://localhost:8100/uploads/{{data.fileName}}"
+                        target="_self"> -->
+            <img style="border-style: none; 
+                    max-width:100px;
+                    max-height:100px;
+                    border-radius: 10%;
+                    display: block;
+                    width: auto;
+                    height: auto;
+                    margin: 0 auto;" src="http://localhost:8100/uploads/{{data.fileName}}"
+                    ng-click="editImage(data.fileName)"
+                    >
+                 <!-- </a> -->
+
+                 <br>
+                </td>
+                <!-- <td>
+                    <button class="btn btn-primary" >Edit</button> -->
+                <!-- </td> -->
+                        </tr>
+                    </table>
+
+
+
+                </div>
+            </div>
+        </div>
+        <div>
+        </div>
+    </div>
+    <!-- <div ng-init="editor()">
+
+    </div> -->
+</body>
+
+</html>
